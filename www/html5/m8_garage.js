@@ -152,11 +152,12 @@ function retainArtwork(parent, next, records, animations) {
 }
 
 export class M8Garage {
-  constructor({ host, client, catalog, assets, run, onClose, onLevelUp=()=>{} }) {
+  constructor({ host, client, catalog, assets, run, onClose, onLevelUp=()=>{}, onShop=null }) {
     this.host = host; this.client = client; this.catalog = catalog; this.assets = assets;
     this.run = run || ((task) => task());
     this.onClose=onClose||(()=>{});
     this.onLevelUp=onLevelUp;
+    this.onShop=onShop||null;
     this.selectedUuid = null; this.group = 'all'; this.page = 0;
     this.pending = false; this.status = ''; this.dialog = null; this.materialModal = null; this.portraits = new Map(); this.disposed = false;
     this.tooltipCleanups = [];
@@ -585,8 +586,8 @@ export class M8Garage {
         }
       }, { title: 'Nhấp để hợp thành nguyên liệu', testId: 'garage-way-tip' });
       wayTipBtn.append(this.image('upgrade.wayTip'));
-      Object.assign(wayTipBtn.style, { padding: '0', border: '0', background: 'transparent', cursor: 'pointer' });
-      dialog.append(positioned(wayTipBtn, 451, 371));
+      Object.assign(wayTipBtn.style, { padding: '0', border: '0', background: 'transparent', cursor: 'pointer', zIndex: '25' });
+      dialog.append(positioned(wayTipBtn, 451, 371, 143, 36));
     }
     const message = this.status || (!progress.affordable ? 'Chưa đủ nguyên liệu.' : '');
     const status = textBlock(message, 25, 315, 580, { fontSize: '11px', textAlign: 'center',color:'#fff',lineHeight:'14px' });
@@ -624,18 +625,20 @@ export class M8Garage {
     if (MATERIAL_CONVERSIONS[itemId] && !recipes.some(r => r.recipeId === MATERIAL_CONVERSIONS[itemId].recipeId)) {
       recipes.push({ mode: 'upgrade', ...MATERIAL_CONVERSIONS[itemId] });
     }
-    const modal = positioned(element('div', null, 'm8-material-convert-modal'), 75, 110, 480, 310);
+    const modal = positioned(element('div', null, 'm8-material-convert-modal'), 65, 80, 500, 360);
     Object.assign(modal.style, {
       background: 'rgba(5, 20, 45, 0.96)',
       border: '2px solid #2874a6',
       borderRadius: '8px',
       boxShadow: '0 4px 20px rgba(0,0,0,0.8)',
-      zIndex: '35',
+      zIndex: '50',
       padding: '16px 20px',
       color: '#fff',
       display: 'flex',
       flexDirection: 'column',
-      gap: '10px'
+      gap: '10px',
+      maxHeight: '380px',
+      overflowY: 'auto'
     });
     modal.dataset.testid = 'garage-material-convert-modal';
 
@@ -652,9 +655,19 @@ export class M8Garage {
     modal.append(header);
 
     if (recipes.length === 0) {
-      modal.append(textBlock('Nguyên liệu này hiện chưa có công thức hợp thành.', 0, 0, 440, { position: 'static', margin: '20px 0' }));
+      const emptyNote = element('div', 'Nguyên liệu này nhận từ Cửa Hàng, giải so tài hoặc tham gia phó bản/đấu trường.');
+      Object.assign(emptyNote.style, { margin: '20px 0', fontSize: '13px', color: '#ccc', textAlign: 'center' });
+      const shopBtn = actionButton('Đến Cửa Hàng để mua', () => {
+        this.dialog = null; this.materialModal = null;
+        if (this.onShop) this.onShop();
+        else this.onClose();
+      }, { testId: 'material-convert-to-shop' });
+      Object.assign(shopBtn.style, {
+        padding: '8px 18px', background: '#2874a6', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: '700', alignSelf: 'center'
+      });
+      modal.append(emptyNote, shopBtn);
     } else {
-      const silver = Number(this.snapshot.meta?.character?.currency?.[1] || 0);
+      const silver = Number(this.snapshot.meta?.character?.currency?.golden || 0);
       recipes.forEach((r) => {
         const sourceCount = inventoryCount(this.snapshot.meta, r.sourceId);
         const targetCount = inventoryCount(this.snapshot.meta, r.targetId);
@@ -715,6 +728,19 @@ export class M8Garage {
         card.append(rTitle, formula, stock, actions);
         modal.append(card);
       });
+
+      const shopRow = element('div', null, 'm8-convert-shop-row');
+      Object.assign(shopRow.style, { display: 'flex', justifyContent: 'center', marginTop: '6px' });
+      const shopBtn = actionButton('Mua nguyên liệu tại Cửa Hàng', () => {
+        this.dialog = null; this.materialModal = null;
+        if (this.onShop) this.onShop();
+        else this.onClose();
+      }, { testId: 'material-convert-shop-btn' });
+      Object.assign(shopBtn.style, {
+        padding: '5px 14px', background: 'transparent', color: '#90caf9', border: '1px solid #2874a6', borderRadius: '4px', cursor: 'pointer', fontSize: '11px'
+      });
+      shopRow.append(shopBtn);
+      modal.append(shopRow);
     }
 
     dialog.append(modal);

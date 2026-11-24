@@ -481,7 +481,7 @@ class BattleService:
             return None
         state=match.states[profile]
         return {key:deepcopy(state[key]) for key in ('room','battle','multiplayer_room_id','multiplayer_object_id',
-                'elo','elo_section','pre_elo_section','season_id') if key in state}
+                'elo','elo_section','pre_elo_section','season_id','level','n_exp') if key in state}
 
     def bind(self,profile,session_state):
         snapshot=self._call('bind',int(profile))
@@ -635,7 +635,8 @@ class BattleService:
             # With nobody present, an earlier disconnect must not award the
             # other offline participant a win. Wait for the last reconnect
             # grace to expire, then retire the shared match without a result.
-            if set(expired)==remaining:self._abandon(match)
+            if not match.arena.pk['finished'] and match.phase != 'finished':
+                if set(expired)==remaining:self._abandon(match)
             return
         for ident in expired:
             self._leave(ident,True)
@@ -721,6 +722,8 @@ class BattleService:
         if any(mid==1708 for mid,_ in match.pending):
             import ranked_matches
             import match_rewards
+            import cosmetic_shop
+            import inventory
             for ident,state in match.states.items():
                 try:
                     with storage.for_profile(ident):
@@ -734,6 +737,18 @@ class BattleService:
             for ident,state in match.states.items():
                 actor=match.arena.actors[match.objects[ident]]
                 match.pending.extend(private(actor,packet) for packet in ranked_matches.update_packets(state))
+                try:
+                    with storage.for_profile(ident):
+                        with storage.connection(write=False) as db:
+                            wallet = cosmetic_shop.snapshot(db)
+                            containers = inventory.load(db)
+                            w_pkt = (1039, struct.pack('<HH6i', 2, 0, *wallet['currency']))
+                            c_pkt = (1100, inventory.list_payload(3, containers.get('3', []), notify_type=2))
+                            lvl_pkt = (85, struct.pack('<BIH', 2, int(state.get('level', 1)), 0))
+                            e_pkt = (85, struct.pack('<BIH', 3, int(state.get('n_exp', 0)), 0))
+                            match.pending.extend([private(actor, w_pkt), private(actor, c_pkt), private(actor, lvl_pkt), private(actor, e_pkt)])
+                except Exception as exc:
+                    log.warning('[multiplayer] S1708 reward packet error for %s: %s', ident, exc)
         self._fanout(match,match.pending)
         match.pending=[];match.error=''
 

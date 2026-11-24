@@ -1835,6 +1835,8 @@ def _client_handler(conn: socket.socket, addr) -> None:
                         reply += _frame(1039, struct.pack('<HH6i', 2, 0, *wallet['currency']))
                         containers = inventory.load(world_db)
                         reply += _frame(1100, inventory.list_payload(3, containers.get('3', [])))
+                        reply += _frame(85, struct.pack('<BIH', 2, int(session_state.get('level', 1)), 0))
+                        reply += _frame(85, struct.pack('<BIH', 3, int(session_state.get('n_exp', 0)), 0))
                         reply += _frame(1017,b'')  # NotifyBackToMain has no fields.
                         conn.sendall(reply)
                         _dump(addr,'S->C',reply,tag='BATTLE-EXIT')

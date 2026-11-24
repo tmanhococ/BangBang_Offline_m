@@ -170,6 +170,10 @@ export class LobbyConnection {
     s.packets.push({role, id: packet.msgId, type: packet.type, bytes: packet.byteLength});
     if (s.packets.length > 80) s.packets.shift();
     if (packet.type === 'characterData') s.character = packet;
+    if (packet.type === 'characterFieldUpdated' && s.character) {
+      if (packet.fieldType === 2) s.character.level = packet.value;
+      if (packet.fieldType === 3) s.character.exp = packet.value;
+    }
     if (packet.type === 'garage') s.tanks = packet.tanks;
     if (packet.type === 'container') {
       const key = packet.containerType ?? packet.contType ?? packet.container;

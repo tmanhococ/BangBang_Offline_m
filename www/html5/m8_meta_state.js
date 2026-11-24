@@ -18,7 +18,7 @@ const CHARACTER_FIELDS = ['accountId', 'sex', 'level', 'vipTime', 'exp', 'tankEx
   'credit', 'buyTalentPageNum'];
 const CURRENCY_FIELDS = ['cash', 'golden', 'silver', 'honor', 'crystal', 'presentPoint'];
 const REPLACE_TANK_OPS = new Set([1, 2, 4, 10, 11, 12, 13, 14, 15, 16, 17, 18]);
-const FIELD_UPDATES = Object.freeze({ 1: 'decorateId', 6: 'elo', 8: 'eloSection', 9: 'goldenPool',
+const FIELD_UPDATES = Object.freeze({ 1: 'decorateId', 2: 'level', 3: 'exp', 6: 'elo', 8: 'eloSection', 9: 'goldenPool',
   10: 'threeVThreeElo', 20: 'credit', 25: 'vipTankTryTime', 26: 'buyTalentPageNum', 27: 'militaryStar' });
 const own = (object, key) => Object.hasOwn(object || {}, key);
 function pick(source, fields) {

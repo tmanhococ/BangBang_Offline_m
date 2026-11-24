@@ -65,6 +65,21 @@ def calculate_level_progression(current_level: int, current_exp: int, gained_exp
 
 def apply_pvp_rewards(state: dict, arena, db) -> tuple[dict, list[tuple[int, bytes]]]:
     """Calculate and persist match rewards, update arena stats, wallet, and inventory."""
+    battle = state.get('battle')
+    if battle and battle.get('rewards_applied'):
+        wallet = cosmetic_shop.snapshot(db)
+        containers = inventory.load(db)
+        wallet_pkt = (1039, struct.pack('<HH6i', 2, 0, *wallet['currency']))
+        bag_pkts = [(1100, inventory.list_payload(3, containers.get('3', []), notify_type=2))]
+        level_pkt = (85, struct.pack('<BIH', 2, int(state.get('level', 1)), 0))
+        exp_pkt = (85, struct.pack('<BIH', 3, int(state.get('n_exp', 0)), 0))
+        reward_info = {
+            'exp': 0, 'silver': 0, 'coupon': 0, 'iron': 0, 'topaz': 0,
+            'is_winner': False, 'is_mvp': False,
+            'new_level': state.get('level', 1), 'new_exp': state.get('n_exp', 0)
+        }
+        return reward_info, [wallet_pkt, level_pkt, exp_pkt] + bag_pkts
+
     pk = getattr(arena, 'pk', {})
     winner = pk.get('winner', 0)
 
@@ -113,6 +128,8 @@ def apply_pvp_rewards(state: dict, arena, db) -> tuple[dict, list[tuple[int, byt
     new_level, new_exp = calculate_level_progression(cur_level, cur_exp, exp)
     state['level'] = new_level
     state['n_exp'] = new_exp
+    if battle is not None:
+        battle['rewards_applied'] = True
 
     # Persist state to worlds
     char_id = state.get('char_id')
@@ -137,7 +154,9 @@ def apply_pvp_rewards(state: dict, arena, db) -> tuple[dict, list[tuple[int, byt
     # Construct reply packets
     wallet_pkt = (1039, struct.pack('<HH6i', 2, 0, *wallet['currency']))
     bag_pkts = bag_updates(previous_items, containers, (3,))
-    packets = [wallet_pkt] + bag_pkts
+    level_pkt = (85, struct.pack('<BIH', 2, new_level, 0))
+    exp_pkt = (85, struct.pack('<BIH', 3, new_exp, 0))
+    packets = [wallet_pkt, level_pkt, exp_pkt] + bag_pkts
 
     reward_info = {
         'exp': exp,
@@ -158,6 +177,16 @@ def apply_pve_rewards(state: dict, db, won: bool) -> tuple[dict, list[tuple[int,
     if not won:
         return {'exp': 0, 'silver': 0, 'coupon': 0, 'iron': 0, 'topaz': 0}, []
 
+    battle = state.get('battle')
+    if battle and battle.get('rewards_applied'):
+        wallet = cosmetic_shop.snapshot(db)
+        containers = inventory.load(db)
+        wallet_pkt = (1039, struct.pack('<HH6i', 2, 0, *wallet['currency']))
+        bag_pkts = [(1100, inventory.list_payload(3, containers.get('3', []), notify_type=2))]
+        level_pkt = (85, struct.pack('<BIH', 2, int(state.get('level', 1)), 0))
+        exp_pkt = (85, struct.pack('<BIH', 3, int(state.get('n_exp', 0)), 0))
+        return {'exp': 0, 'silver': 0, 'coupon': 0, 'iron': 0, 'topaz': 0}, [wallet_pkt, level_pkt, exp_pkt] + bag_pkts
+
     exp = 350
     silver = 100000
     coupon = 350
@@ -174,6 +203,8 @@ def apply_pve_rewards(state: dict, db, won: bool) -> tuple[dict, list[tuple[int,
     new_level, new_exp = calculate_level_progression(cur_level, cur_exp, exp)
     state['level'] = new_level
     state['n_exp'] = new_exp
+    if battle is not None:
+        battle['rewards_applied'] = True
 
     char_id = state.get('char_id')
     if char_id:
@@ -193,7 +224,9 @@ def apply_pve_rewards(state: dict, db, won: bool) -> tuple[dict, list[tuple[int,
 
     wallet_pkt = (1039, struct.pack('<HH6i', 2, 0, *wallet['currency']))
     bag_pkts = bag_updates(previous_items, containers, (3,))
-    packets = [wallet_pkt] + bag_pkts
+    level_pkt = (85, struct.pack('<BIH', 2, new_level, 0))
+    exp_pkt = (85, struct.pack('<BIH', 3, new_exp, 0))
+    packets = [wallet_pkt, level_pkt, exp_pkt] + bag_pkts
 
     reward_info = {
         'exp': exp,

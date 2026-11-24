@@ -399,6 +399,11 @@ def _settle(db, state, arena, now, *, player=None):
     battle.update(completed_recorded=True, rank_result=rank_result, result_summary=summary)
     context = brief(db, ident, now)
     state.update(context)
+    import match_rewards
+    try:
+        match_rewards.apply_pvp_rewards(state, arena, db)
+    except Exception as exc:
+        log.warning('PvP reward error in _settle for %s: %s', ident, exc)
 
 
 
