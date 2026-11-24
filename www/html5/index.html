@@ -286,7 +286,7 @@
             <div id="battle-panel" hidden>
               <div class="battle-toolbar">
                 <div class="battle-score"><span id="score-blue">—</span><span>:</span><span id="score-red">—</span><time id="battle-clock">—:—</time></div>
-                <div class="battle-options"><button id="battle-sound" type="button" aria-pressed="false">Bật âm thanh</button><button id="battle-fullscreen" type="button">Toàn màn hình</button><label>Góc nhìn <select id="battle-zoom"><option value="0.75">Rộng</option><option value="1" selected>Gốc</option><option value="1.25">Gần</option></select></label></div>
+                <div class="battle-options"><button id="battle-music" type="button" aria-pressed="true">Bật nhạc nền</button><button id="battle-sound" type="button" aria-pressed="false">Bật âm thanh</button><button id="battle-fullscreen" type="button">Toàn màn hình</button><label>Góc nhìn <select id="battle-zoom"><option value="0.75">Rộng</option><option value="1" selected>Gốc</option><option value="1.25">Gần</option></select></label></div>
               </div>
               <div id="battle-stage" class="battle-stage">
                 <canvas id="battle-canvas" tabindex="0" aria-label="Trận Bang Bang. WASD hoặc phím mũi tên để đi, chuột để ngắm và bắn, E, R, Space để dùng kỹ năng."></canvas>
@@ -294,6 +294,7 @@
                 <div id="robo-hud-host" hidden></div>
                 <section id="robo-settings" class="robo-settings" aria-label="Cài đặt trận đấu" hidden>
                   <h3>Cài đặt trận đấu</h3>
+                  <button id="robo-music" type="button">Bật nhạc nền</button>
                   <button id="robo-sound" type="button">Bật âm thanh</button>
                   <button id="robo-fullscreen" type="button">Toàn màn hình</button>
                   <label>Đồ họa <select id="robo-renderer"><option value="auto">Tự động · ưu tiên GPU</option><option value="canvas">Tương thích</option></select></label>

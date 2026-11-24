@@ -266,6 +266,7 @@ def login_payload(mid, body, state):
         head = bytearray(body[:126])
         struct.pack_into('<I', head, 0, state['char_id'])
         head[4:6] = bytes((state['sex'], state['level']))
+        struct.pack_into('<i', head, 10, int(state.get('n_exp', 0)))
         import inventory
         with storage.connection() as db:
             struct.pack_into('<H', head, 118, inventory.grocery_capacity(db)-45)

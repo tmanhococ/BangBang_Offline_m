@@ -627,8 +627,18 @@ def _client_handler(conn: socket.socket, addr) -> None:
                      (mid==1572 and len(body)>=26 and body[4]==1
                       and struct.unpack_from('<I',body,22)[0]==arena.player.id)]
         if arena and arena.geometry.id not in PVE_MAPS and any(mid==1708 for mid,_ in packets):
+            import match_rewards
+            try:
+                world_db.execute('BEGIN IMMEDIATE')
+                _, reward_pkts = match_rewards.apply_pvp_rewards(session_state, arena, world_db)
+                world_db.commit()
+            except Exception as exc:
+                world_db.rollback()
+                log.warning('[sixcube] PvP rewards delivery error: %s', exc)
+                reward_pkts = []
             from pk_rules import settlement
             packets=[settlement(arena) if mid==1708 else (mid,body) for mid,body in packets]
+            packets+=reward_pkts
             packets+=ranked_matches.update_packets(session_state)
         frames=[_frame(msg_id,body) for msg_id,body in skin_effects.present_packets(packets,session_state,arena)]
         if frames:

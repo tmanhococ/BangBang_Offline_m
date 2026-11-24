@@ -81,9 +81,10 @@ export function openNormalShopPurchase(ui,offer){
   if(!canUseNormalShop(ui)||!offer?.available)return;
   openDialog(ui,{mode:'buy',goods:structuredClone(offer),payment:offer.payments[0].key,quantity:1});
 }
-export function openNormalShopBox(ui,item,container){
+export function openNormalShopBox(ui,item,container,quantity=1){
   if(!canUseNormalShop(ui)||!normalShopBox(ui,item.templateId))return;
-  openDialog(ui,{mode:'open_box',item:structuredClone(item),container,quantity:1});
+  const count=Math.min(item.count||1,Math.max(1,quantity));
+  openDialog(ui,{mode:'open_box',item:structuredClone(item),container,quantity:count});
 }
 export function openNormalShopRecovery(ui){
   if(!canRecover(ui))return;
@@ -133,19 +134,41 @@ export function appendNormalShopBoxAction(ui,detail,item,container){
   const box=normalShopBox(ui,item.templateId);if(!box)return;
   detail.append(note(rulesText(box)));
   const protectedItem=item.lifeTime!==0||!Number.isInteger(item.extFlag)||(item.extFlag&~17)!==0;
-  detail.append(ui.button('Mở 1 '+(box.mode==='random'?'hộp':'gói quà'),()=>openNormalShopBox(ui,item,container),{
+  const count=item.count||1;
+  const actions=element('div',null,'m81345-box-actions');
+  actions.append(ui.button('Mở 1',()=>openNormalShopBox(ui,item,container,1),{
     testId:'inventory-open-box',disabled:!canUseNormalShop(ui)||protectedItem,
-    title:protectedItem?'Vật phẩm đang khóa, có thời hạn hoặc đang sử dụng.':canUseNormalShop(ui)?'Xem trước phần thưởng rồi xác nhận mở.':blocker(ui)}));
+    title:protectedItem?'Vật phẩm đang khóa, có thời hạn hoặc đang sử dụng.':canUseNormalShop(ui)?'Mở 1 hộp.':blocker(ui)}));
+  if(count>=5){
+    actions.append(ui.button('Mở 5',()=>openNormalShopBox(ui,item,container,5),{
+      testId:'inventory-open-box-5',disabled:!canUseNormalShop(ui)||protectedItem,
+      title:protectedItem?'Vật phẩm đang khóa.':canUseNormalShop(ui)?'Mở 5 hộp cùng lúc.':blocker(ui)}));
+  }
+  if(count>=10){
+    actions.append(ui.button('Mở 10',()=>openNormalShopBox(ui,item,container,10),{
+      testId:'inventory-open-box-10',disabled:!canUseNormalShop(ui)||protectedItem,
+      title:protectedItem?'Vật phẩm đang khóa.':canUseNormalShop(ui)?'Mở 10 hộp cùng lúc.':blocker(ui)}));
+  }
+  if(count>1 && count!==5 && count!==10){
+    const bulkCount=Math.min(count,100);
+    actions.append(ui.button(`Mở tất cả (${bulkCount})`,()=>openNormalShopBox(ui,item,container,bulkCount),{
+      testId:'inventory-open-box-all',disabled:!canUseNormalShop(ui)||protectedItem,
+      title:protectedItem?'Vật phẩm đang khóa.':canUseNormalShop(ui)?`Mở ${bulkCount} hộp cùng lúc.`:blocker(ui)}));
+  }
+  detail.append(actions);
 }
 function dialogIntent(value){
   return canonicalShopIntent(value.mode==='buy'?{kind:'buy',goods_id:value.goods.goodsId,payment:value.payment,quantity:value.quantity}
-    :{kind:'open_box',item:shopItemReference(value.item,value.container)});
+    :{kind:'open_box',item:shopItemReference(value.item,value.container),quantity:value.quantity||1});
 }
 function currentDialog(ui,value){return !ui.disposed&&ui.confirmation===value&&ui.epoch===value.epoch&&ui.identity===value.identity&&ui.client.generation===value.generation;}
 async function runDialog(ui,value,action){
   if(!currentDialog(ui,value)||value.busy||!(action==='status'?canRecover(ui):canUseNormalShop(ui)))return;
   if(action==='preview'&&value.mode==='buy'&&(!whole(value.quantity,1,maxQuantity(value.goods))||!value.goods.payments.some(p=>p.key===value.payment))){
     value.notice='Nhập số lượt mua nguyên từ 1 đến '+numberText(maxQuantity(value.goods))+'.';ui.render();return;
+  }
+  if(action==='preview'&&value.mode==='open_box'&&(!whole(value.quantity,1,Math.min(value.item?.count||1,100)))){
+    value.notice='Nhập số lượng mở từ 1 đến '+numberText(Math.min(value.item?.count||1,100))+'.';ui.render();return;
   }
   if(action==='apply'&&!value.preview)return;
   value.busy=true;value.notice=action==='preview'?'Đang kiểm tra giá, số lượng và phần thưởng…':action==='apply'?'Đang chờ máy chủ xác nhận…':'Đang kiểm tra biên nhận đã lưu…';ui.render();
@@ -197,7 +220,7 @@ export function renderNormalShopConfirmation(ui,value){
     if(icon){const image=normalShopIcon(icon,'','',82,82);if(image)hero.append(image);}
     const info=element('div');
     if(value.mode==='buy')info.append(note(nativeText(value.goods.description||'')));
-    else info.append(note(`Mở đúng 1 hộp. Hiện có ${numberText(value.item.count)}.`));
+    else info.append(note(`Mở ${numberText(value.quantity||1)} hộp. Hiện có ${numberText(value.item.count)}.`));
     hero.append(info);body.append(hero);
     if(value.mode==='buy'){
       const choices=element('div',null,'m81345-shop-choices'),payment=value.goods.payments.find(p=>p.key===value.payment)||value.goods.payments[0];
@@ -211,6 +234,18 @@ export function renderNormalShopConfirmation(ui,value){
       choices.append(quantityLabel,paymentSelect);body.append(choices);
       const balance=Number(ui.snapshot.meta?.character?.currency?.[currencyField(payment.coinType)]||0),quantityValid=whole(value.quantity,1,maxQuantity(value.goods));
       body.append(note(quantityValid?`Tổng: ${numberText(payment.price*value.quantity)} ${shopCurrencyName(payment.coinType)} · Nhận ${numberText(payment.quantity*value.quantity)} đơn vị. Số dư: ${numberText(balance)} ${shopCurrencyName(payment.coinType)}.`:'Nhập số lượt mua hợp lệ.'));
+    }else if(value.mode==='open_box'){
+      const choices=element('div',null,'m81345-shop-choices');
+      const maxCount=Math.min(value.item.count||1, 100);
+      const quantity=element('input');quantity.type='number';quantity.min='1';quantity.max=String(maxCount);quantity.step='1';quantity.value=String(value.quantity||1);
+      quantity.dataset.accountField='normal-shop-quantity';quantity.dataset.testid='normal-shop-box-quantity';quantity.setAttribute('aria-label','Số lượng mở');quantity.disabled=value.busy||value.stage==='confirm';
+      quantity.addEventListener('input',()=>{
+        if(!current()||value.busy||value.stage==='confirm')return;
+        const val=Math.max(1, Math.min(maxCount, Number(quantity.value)||1));
+        value.quantity=val;value.preview=null;ui.render();
+      });
+      const quantityLabel=element('label','Số lượng mở ');quantityLabel.append(quantity);
+      choices.append(quantityLabel);body.append(choices);
     }
     const details=element('div',null,'m81345-shop-dialog-details'),quote=value.preview?.quote;
     if(quote?.kind==='buy'){
@@ -221,7 +256,7 @@ export function renderNormalShopConfirmation(ui,value){
     if(value.mode==='buy'&&normalShopBox(ui,value.goods.boxId||value.goods.itemId))details.append(note(value.goods.autoUse?'Nội dung gói được nhận ngay khi mua.':'Sau khi mua, vào Kho để chọn mở.'));
     body.append(details);
     if(value.stage==='confirm'){
-      primary=button(value.mode==='buy'?'Xác nhận mua':'Xác nhận mở 1',()=>runDialog(ui,value,'apply'),'normal-shop-confirm',!canUseNormalShop(ui));
+      primary=button(value.mode==='buy'?'Xác nhận mua':`Xác nhận mở ${numberText(value.quantity||1)}`,()=>runDialog(ui,value,'apply'),'normal-shop-confirm',!canUseNormalShop(ui));
       footer.append(button('Chọn lại',()=>{value.stage='choose';value.preview=null;value.notice='';ui.render();},'normal-shop-back'));
     }else primary=button('Xem trước',()=>runDialog(ui,value,'preview'),'normal-shop-preview',!canUseNormalShop(ui));
     if(!canUseNormalShop(ui)&&!value.busy)body.append(note(blocker(ui),'error'));

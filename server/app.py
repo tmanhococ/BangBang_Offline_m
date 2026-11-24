@@ -41,6 +41,8 @@ STORE = Store()
 
 
 class Handler(SimpleHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(WWW), **kwargs)
 
@@ -245,6 +247,8 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 class Server(ThreadingHTTPServer):
+    request_queue_size = 128
+
     def handle_error(self, request, client_address):
         log.exception('[http] Request failed from %s', client_address)
 
