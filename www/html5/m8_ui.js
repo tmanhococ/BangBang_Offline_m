@@ -284,16 +284,46 @@ export class M8UI {
   }
   buildLogin() {
     this.content.append(this.art('lobby.background',0,0,{width:1000,height:600}),this.art('lobby.platform',0,0));
-    const box=place(element('form',null,'m8-login m8-panel'),320,110,360,340);
-    box.append(element('h1','BANG BANG'),element('p','Đăng nhập để vào sảnh','m8-subtitle'));
+    const box=place(element('form',null,'m8-login m8-panel'),320,70,360,420);
+    let isRegister = false;
+    const subtitle = element('p','Đăng nhập để vào sảnh','m8-subtitle');
+    box.append(element('h1','BANG BANG'), subtitle);
     this.loginUser=textInput('',{placeholder:'Tài khoản',maxLength:32});this.loginUser.autocomplete='username';
     this.loginUser.required=true;this.loginUser.dataset.testid='m8-username';
     this.loginPassword=textInput('',{placeholder:'Mật khẩu',type:'password'});this.loginPassword.autocomplete='current-password';
     this.loginPassword.required=true;this.loginPassword.dataset.testid='m8-password';
+    const repeatPassword=textInput('',{placeholder:'Nhập lại mật khẩu',type:'password'});repeatPassword.autocomplete='new-password';
+    const repeatField = field('Nhập lại MK', repeatPassword);
+    repeatField.hidden = true;
     this.loginButton=actionButton('Vào game',null,{className:'primary',testId:'m8-login'});this.loginButton.type='submit';
-    box.append(field('Tài khoản',this.loginUser),field('Mật khẩu',this.loginPassword),this.loginButton);
-    box.onsubmit=event=>{event.preventDefault();const username=this.loginUser.value.trim(),password=this.loginPassword.value;
-      this.loginPassword.value='';this.run(()=>this.client.login(username,password));};this.content.append(box);
+    const switchModeBtn = actionButton('Đăng ký tài khoản mới (Level 1)',()=>{
+      isRegister = !isRegister;
+      subtitle.textContent = isRegister ? 'Đăng ký tài khoản tân thủ (Cấp 1)' : 'Đăng nhập để vào sảnh';
+      repeatField.hidden = !isRegister;
+      repeatPassword.required = isRegister;
+      this.loginButton.textContent = isRegister ? 'Đăng ký & Vào game' : 'Vào game';
+      switchModeBtn.textContent = isRegister ? 'Đã có tài khoản? Đăng nhập' : 'Đăng ký tài khoản mới (Level 1)';
+    },{className:'quiet',testId:'m8-auth-switch'});
+    switchModeBtn.type='button';
+    Object.assign(switchModeBtn.style,{fontSize:'12px',marginTop:'6px'});
+    box.append(field('Tài khoản',this.loginUser),field('Mật khẩu',this.loginPassword),repeatField,this.loginButton,switchModeBtn);
+    box.onsubmit=event=>{
+      event.preventDefault();
+      const username=this.loginUser.value.trim(),password=this.loginPassword.value;
+      if (isRegister) {
+        if (password !== repeatPassword.value) {
+          alert('Mật khẩu nhập lại không khớp!');
+          return;
+        }
+        this.loginPassword.value='';
+        repeatPassword.value='';
+        this.run(()=>this.client.register(username,password));
+      } else {
+        this.loginPassword.value='';
+        this.run(()=>this.client.login(username,password));
+      }
+    };
+    this.content.append(box);
   }
   buildLobby() {
     this.lobbyKey='';

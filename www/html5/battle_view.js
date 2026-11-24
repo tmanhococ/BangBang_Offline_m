@@ -36,6 +36,7 @@ import {isPveMap} from './m81314_protocol.js';
 import {isWorldBossScene,WORLD_BOSS_MAP} from './m81330_protocol.js';
 import {drawWorldBossHud} from './m81330_worldboss_hud.js';
 import {nativeSequenceAdditive} from './m81332_visual_fixes.js';
+import {BattleScoreboard} from './battle_scoreboard.js';
 
 const $ = id => document.getElementById(id);
 const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
@@ -92,6 +93,12 @@ export class BattleView {
     this.linkFrames = new Map(); this.linkDiagnostics = []; this.mapNpcDiagnostics = new Map();
     this.drawnResources = new Map();
     this.audio = new NativeBattleAudio(store, () => this.soundSpace());
+    this.battleMusic = typeof globalThis.Audio === 'function' ? new Audio('/rez/zh_CN/sound/fight_bg.mp3') : null;
+    if (this.battleMusic) {
+      this.battleMusic.loop = true;
+      this.battleMusic.preload = 'auto';
+    }
+    this.battleMusicEnabled = true;
     store.onEvictImage = image => this.surface.releaseTexture(image);
     this.combatSeen = null; this.effects = new BattleEffects(store,
       (source, position, options) => this.playSound(source, position, options),
@@ -118,6 +125,11 @@ export class BattleView {
     this.input = new BattleInput({canvas: this.canvas, client,
       worldPoint: (x, y) => this.worldPoint(x, y), getGeometry: () => this.geometry,
       onMessage: text => this.message(text)});
+    this.scoreboard = new BattleScoreboard({host: $('battle-stage') || $('battle-panel') || document.body});
+    this.input.onToggleScoreboard = (force) => {
+      this.scoreboard.toggle(force, this.client.combat, this.prepared?.catalog);
+      return this.scoreboard.visible;
+    };
     this.postmatch = new M86Postmatch({host: $('battle-stage'), client,
       releaseInput: () => this.input.releaseAll(),
       playSound: (resource, position, options) => this.playSound(resource, position, options)});
@@ -154,6 +166,18 @@ export class BattleView {
       if (self?.dead) nextSpectator();
     });
     $('battle-zoom').onchange = () => { this.camera.zoom = Number($('battle-zoom').value); };
+    const toggleBattleMusic = () => {
+      this.battleMusicEnabled = !this.battleMusicEnabled;
+      try {
+        const raw = globalThis.localStorage?.getItem('bangbang.html5.audio.v1');
+        const parsed = raw ? JSON.parse(raw) : {};
+        parsed.musicOn = this.battleMusicEnabled;
+        globalThis.localStorage?.setItem('bangbang.html5.audio.v1', JSON.stringify(parsed));
+      } catch {}
+      this.syncBattleMusic();
+    };
+    if ($('battle-music')) $('battle-music').onclick = toggleBattleMusic;
+    if ($('robo-music')) $('robo-music').onclick = toggleBattleMusic;
     $('battle-sound').onclick = () => run(async () => {
       await this.audio.setEnabled(!this.audio.enabled);
       this.roboSoundWanted = this.audio.enabled;
@@ -189,6 +213,7 @@ export class BattleView {
       if (this.roboActive && this.roboSoundWanted && this.input.active && !this.audio.enabled) {
         this.audio.setEnabled(true).catch(error => this.message(error.message));
       }
+      this.syncBattleMusic();
     };
     this.canvas.addEventListener('pointerdown', unlockRoboSound);
     window.addEventListener('keydown', event => {
@@ -248,7 +273,7 @@ export class BattleView {
       this.surface.clear(); this.context.clearRect(0, 0, this.width || 1, this.height || 1);
       $('battle-result').hidden = true; this.resultSeen = null; this.resultViewport = null;
       this.postmatch.reset();
-      this.audio.stopAll(); this.shake.reset(); this.shakeOffset = {x: 0, y: 0};
+      this.audio.stopAll(); if (this.battleMusic) this.battleMusic.pause(); this.shake.reset(); this.shakeOffset = {x: 0, y: 0};
       this.linkFrames.clear(); this.linkDiagnostics = []; this.mapNpcDiagnostics.clear();
       this.drawnResources.clear();
       if (this.store.sceneId != null) this.store.releaseScene?.();
@@ -1144,6 +1169,9 @@ export class BattleView {
   }
 
   drawHud(state, self, now) {
+    if (this.scoreboard?.visible) {
+      this.scoreboard.update(state, this.prepared?.catalog);
+    }
     if (this.roboActive) {
       const input = this.input.snapshot(), clock = serverTimeAt(state, now);
       const room=this.client.state.play.room,practice=Number(state.mapId)===7&&isPracticeRoom(room);
@@ -1222,16 +1250,53 @@ export class BattleView {
     $('battle-asset-status').textContent = `${this.surface.backend} · ${assets.loadedImages} ảnh đã tải`
       + (assets.missing.length ? ` · ${assets.missing.length} tài nguyên hoặc cách hiển thị chưa được hỗ trợ trong bản này.` : '');
     $('battle-asset-status').title = assets.missing.slice(0, 20).map(item => `${item.logical}: ${item.reason}`).join('\n');
+    this.syncBattleMusic();
     if (state.result && this.resultSeen !== state.result) this.drawResult(state);
   }
 
   drawResult(state) {
     const first = !this.resultSeen;
     this.resultSeen = state.result; this.input.releaseAll();
+    this.scoreboard?.toggle(false);
     $('battle-result').hidden = true;
-    if (first) this.audio.stopAll();
+    if (first) {
+      this.audio.stopAll();
+      if (this.battleMusic) this.battleMusic.pause();
+    }
     this.postmatch.show(state);
     this.resultViewport = `${this.width}:${this.height}`;
+  }
+
+  syncBattleMusic() {
+    if (!this.battleMusic) return;
+    let musicOn = true, volume = 50;
+    try {
+      const raw = globalThis.localStorage?.getItem('bangbang.html5.audio.v1');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (typeof parsed.musicOn === 'boolean') musicOn = parsed.musicOn;
+        if (Number.isFinite(parsed.musicVolume)) volume = Math.max(0, Math.min(100, Math.round(parsed.musicVolume)));
+      }
+    } catch {}
+    const enabled = musicOn && this.battleMusicEnabled && !this.disposed;
+    this.battleMusic.volume = 0.5 * (volume / 100);
+    if ($('battle-music')) {
+      $('battle-music').textContent = enabled ? 'Tắt nhạc nền' : 'Bật nhạc nền';
+      $('battle-music').setAttribute('aria-pressed', String(enabled));
+    }
+    if ($('robo-music')) {
+      $('robo-music').textContent = enabled ? 'Tắt nhạc nền' : 'Bật nhạc nền';
+    }
+    const inScene = this.client?.state?.play?.phase === 'scene' && !this.resultSeen;
+    if (inScene && enabled && !document.hidden) {
+      if (this.battleMusic.paused) {
+        this.battleMusic.play().catch(() => {});
+      }
+    } else {
+      if (!this.battleMusic.paused) {
+        this.battleMusic.pause();
+      }
+    }
   }
 
   playSound(resource, position, options) { return this.audio.play(resource, position, options); }

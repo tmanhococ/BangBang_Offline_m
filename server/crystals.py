@@ -43,9 +43,16 @@ def _catalog(database):
     attrs = defaultdict(list)
     for r in storage.template_rows('CrystalAttrTemplate_table.xml'):
         attrs[int(r['nAttrGroupId'])].append((int(r['nAttrType']), int(r['nValueType']), r['fAttrValue']))
-    recipes = {int(r['nId']): r for r in storage.template_rows('ItemConvertTemplate_table.xml')
-               if int(r.get('nType', 0)) == 29 and int(r['nNewItemId']) in crystals
-               and int(crystals[int(r['nNewItemId'])]['iReuseD']) in (4, 5)}
+    recipes = {}
+    for r in storage.template_rows('ItemConvertTemplate_table.xml'):
+        ntype = int(r.get('nType', 0))
+        nid = int(r['nId'])
+        if ntype == 29:
+            new_id = int(r['nNewItemId'])
+            if new_id in crystals and int(crystals[new_id]['iReuseD']) in (4, 5):
+                recipes[nid] = r
+        elif ntype in (2, 3):
+            recipes[nid] = r
     return items, crystals, slots, drops, attrs, recipes
 
 
@@ -211,7 +218,8 @@ def apply(state, mid, payload, db, *, rng=None):
             return [(1524, struct.pack('<IH', 20, 0))], None
         if state.get('battle'):
             raise ValueError('Hãy về sảnh hoặc phòng chọn tank để đổi tinh thể.')
-        db.execute('BEGIN IMMEDIATE')
+        if not db.in_transaction:
+            db.execute('BEGIN IMMEDIATE')
         profile, containers, wallet = snapshot(db), inventory.load(db), shop.snapshot(db)
         previous_items = deepcopy(containers)
         boards = profile['boards']
@@ -289,19 +297,41 @@ def apply(state, mid, payload, db, *, rng=None):
             offset = 2 + 8 * count
             coins, = struct.unpack_from('<H', payload, offset)
             shop._end(payload, offset + 2)
-            if coins:
-                raise ValueError('Đổi tinh thể chỉ dùng mảnh tinh thể.')
             ids = []
+            silver_fee = 0
             for ident, amount in requests:
                 recipe = catalog()[5].get(ident)
                 if recipe is None or not 0 < amount <= 999:
                     raise ValueError('Công thức đổi chưa được mở.')
+                ntype = int(recipe.get('nType', 0))
                 out = int(recipe['nNewItemId'])
-                change_items(containers, PIECES, -int(recipe['iCount1']) * amount)
-                change_items(containers, out, amount)
-                ids.extend([out] * amount)
+                out_count = int(recipe.get('nNewItemCount') or 1) * amount
+                if ntype == 29:
+                    if coins:
+                        raise ValueError('Đổi tinh thể chỉ dùng mảnh tinh thể.')
+                    change_items(containers, PIECES, -int(recipe['iCount1']) * amount)
+                    change_items(containers, out, out_count)
+                    changed_containers.update((3, 10))
+                elif ntype in (2, 3):
+                    in_id = int(recipe['nItemId1'])
+                    in_count = int(recipe['iCount1']) * amount
+                    fee = int(recipe.get('iPrice') or 0) * amount
+                    coin_type = int(recipe.get('nCoinType') or 2)
+                    if coin_type == 2:  # Bạc
+                        silver_fee += fee
+                    change_items(containers, in_id, -in_count)
+                    change_items(containers, out, out_count)
+                    changed_containers.add(3)
+                else:
+                    raise ValueError('Loại công thức chuyển đổi chưa hỗ trợ.')
+                ids.extend([out] * out_count)
+            if silver_fee:
+                if wallet['currency'][1] < silver_fee:
+                    raise ValueError('Không đủ bạc để chuyển đổi.')
+                wallet['currency'][1] -= silver_fee
             packets = [award_packet(ids, 8)]
-            changed_containers.update((3, 10))
+            if silver_fee:
+                packets.insert(0, (1039, struct.pack('<HH6i', 2, 0, *wallet['currency'])))
         else:
             raise ValueError('Thao tác tinh thể chưa hỗ trợ.')
         shop._set(db, SETTING, profile)

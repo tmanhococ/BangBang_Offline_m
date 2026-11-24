@@ -242,14 +242,26 @@ export class BattleInput {
 
   keyDown(event) {
     const code = keyCode(event);
-    if (code === 'Escape') { this.hoveredSkill = null; this.rangeFeedback = null; }
+    if (code === 'Escape') {
+      this.hoveredSkill = null;
+      this.rangeFeedback = null;
+      if (this.onToggleScoreboard?.(false)) {
+        event.preventDefault?.();
+        return;
+      }
+    }
     if (code === 'Escape' && this.active) {
       event.preventDefault?.(); this.releaseAll('escape'); return;
     }
+    if (editable(event.target) || event.ctrlKey || event.metaKey || event.altKey) return;
+    const nativeKey=nativeEventKey(event),action=this.inputOptions?.byKey?.get(nativeKey);
+    if (action === 71 || code === 'KeyG') {
+      event.preventDefault?.();
+      this.onToggleScoreboard?.();
+      return;
+    }
     const current = this.current(this.now());
-    if (!this.active || !current || editable(event.target)
-        || event.ctrlKey || event.metaKey || event.altKey) return;
-    const nativeKey=nativeEventKey(event),action=this.inputOptions.byKey.get(nativeKey);
+    if (!this.active || !current) return;
     if (!(code in MOVEMENT) && action!==1001 && !Object.hasOwn(INPUT_ACTION_SLOTS,action)) return;
     event.preventDefault?.();
     if (event.repeat || this.keys.has(code)) return;

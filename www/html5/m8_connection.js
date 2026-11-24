@@ -8,7 +8,7 @@ import {encodePrimaryTank,encodeStrengthenTank,encodeAdvanceTank,encodeEquipSkin
   encodeUseCosmetic,encodePlayerSettingFlags,encodePlayerOptions} from './m8_meta_protocol.js';
 import {encodePurchase,encodeGuildAction} from './m8_account_protocol.js';
 import {encodeJoinRoom,encodeRoomOp,encodeStartMatch} from './room_protocol.js';
-import {encodeCrystalAssign} from './m8_crystal_protocol.js';
+import {encodeCrystalAssign, encodeCrystalExchange} from './m8_crystal_protocol.js';
 import {isBattleMap as isPKMap,isBattleMode as isPKMode} from './m810_modes.js';
 import {NormalShopTransactions,createNormalShopState} from './m81345_shop_transactions.js';
 
@@ -188,6 +188,10 @@ export class M8Connection extends M4Connection {
   purchaseCosmetic(goods) {
     return this.metaAction('purchase',encodePurchase(goods),p=>p.type==='container'
       &&p.items.some(item=>item.templateId===goods.itemId),'mua vật phẩm');
+  }
+  convertMaterial(recipeId, count = 1) {
+    return this.metaAction('convertMaterial', encodeCrystalExchange([{recipeId, count}]),
+      p => p.type === 'settleAward' && p.kind === 8, 'chuyển đổi nguyên liệu');
   }
   equipHalo(uuid, haloId) {
     return this.metaAction('halo',encodeEquipHalo(uuid,haloId),p=>p.type==='tankHaloResult'

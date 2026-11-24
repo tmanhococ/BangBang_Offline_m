@@ -58,12 +58,15 @@ def canonical(value):
             raise RewardError('intent_invalid', 'Mã hàng, cách trả hoặc số lượng mua không hợp lệ.')
         return dict(kind='buy', goods_id=value['goods_id'], payment=value['payment'], quantity=value['quantity'])
     if value.get('kind') == 'open_box':
-        if set(value) != {'kind', 'item'}:
+        if not (set(value) == {'kind', 'item'} or set(value) == {'kind', 'item', 'quantity'}):
             raise RewardError('intent_invalid', 'Thao tác mở hộp chứa trường ngoài hợp đồng.')
         ref = economy_actions._ref(value['item'])
         if ref['container'] != 2:
             raise RewardError('container_blocked', 'Chỉ mở hộp được hỗ trợ trong ngăn Vật phẩm.')
-        return dict(kind='open_box', item=ref)
+        quantity = value.get('quantity', 1)
+        if not _integer(quantity, 1, 100):
+            raise RewardError('quantity_invalid', 'Số lượng mở hộp phải từ 1 đến 100.')
+        return dict(kind='open_box', item=ref, quantity=quantity)
     raise RewardError('intent_invalid', 'Thao tác shop chưa được hỗ trợ.')
 
 
@@ -194,10 +197,14 @@ def _available(db, source):
     for key, row in source['rewards'].items():
         if key.startswith('item:') and str(row['id']) in source['boxes']:
             item = items.get(row['id'], {})
-            if (int(item.get('nType') or 0) not in (20, 27)
-                    or int(item.get('nContType') or 0) != row.get('container')
-                    or int(item.get('iStackMax') or 0) != row.get('stack_max')
-                    or int(item.get('nAutoUse') or 0)):
+            ntype = int(item.get('nType') or 0)
+            ncont = int(item.get('nContType') or 0)
+            stack = int(item.get('iStackMax') or 0)
+            autouse = int(item.get('nAutoUse') or 0)
+            if (ntype not in (20, 27, 69)
+                    or ncont != row.get('container')
+                    or stack != row.get('stack_max')
+                    or (autouse and ntype not in (69,))):
                 raise RewardError('catalog_mismatch', 'Hộp không khớp dữ liệu gốc hiện tại; chưa thay đổi gì.')
             result[key] = row
         elif key in current:
@@ -308,14 +315,17 @@ def plan(db, intent):
                      rewards=[_descriptor(row, available) for row in value['rewards']])
         return dict(revision=revision, quote=quote, values=[dict(outcome='purchase', value=value)], available=available)
     ref = intent['item']
+    quantity = intent.get('quantity', 1)
     box = source['boxes'].get(str(ref['template_id']))
     if box is None:
         raise RewardError('box_unsupported', 'Vật phẩm này chưa có cơ chế mở hộp được hỗ trợ.')
     item = economy_actions._lookup(before['containers'], ref)
     economy_actions._protection(item)
-    values = shop_boxes.plans(db, box, ref, available)
+    if item['count'] < quantity:
+        raise RewardError('quantity_invalid', 'Số lượng hộp trong túi không đủ.')
+    values = shop_boxes.plans(db, box, ref, available, quantity=quantity)
     quote = dict(kind='open_box', profile_id=storage.profile_id(), policy='all_or_nothing', item_id=box['itemId'],
-                 name=box['name'], quantity=1, box=_public_box(box, available))
+                 name=box['name'], quantity=quantity, box=_public_box(box, available))
     return dict(revision=revision, quote=quote, values=values, available=available)
 
 
@@ -334,7 +344,8 @@ def apply(state, body, db, context):
         request_id, action, operation_id = (request[key] for key in ('request_id', 'action', 'operation_id'))
         if type(state.get('char_id')) is not int or state['char_id'] != storage.profile_id():
             raise RewardError('profile_mismatch', 'Phiên shop không khớp nhân vật đã đăng nhập.')
-        db.execute('BEGIN IMMEDIATE' if action == 'apply' else 'BEGIN')
+        if not db.in_transaction:
+            db.execute('BEGIN IMMEDIATE' if action == 'apply' else 'BEGIN')
         receipt = _receipt(db, operation_id)
         response = dict(request_id=request_id, operation_id=operation_id, action=action, ok=True, profile_id=storage.profile_id())
         native = []
@@ -363,11 +374,19 @@ def apply(state, body, db, context):
                         or not now <= proof['expires'] <= now + PREVIEW_SECONDS
                         or not hmac.compare_digest(proof['token'], expected['token'])):
                     raise RewardError('preview_stale', 'Xác nhận đã hết hạn hoặc túi/tiền/danh mục đã đổi; chưa tiêu gì. Hãy xem trước lại.')
-                chosen = value['values'][0] if request['intent']['kind'] == 'buy' else shop_boxes.select(value['values'])
+                if request['intent']['kind'] == 'buy':
+                    chosen = value['values'][0]
+                elif request['intent'].get('quantity', 1) > 1:
+                    source = catalog()
+                    box = source['boxes'][str(request['intent']['item']['template_id'])]
+                    chosen = shop_boxes.draw_bulk(db, box, request['intent']['item'], value['available'], request['intent']['quantity'])
+                else:
+                    chosen = shop_boxes.select(value['values'])
                 native = mail_rewards.commit_plan(db, state, chosen['value'])
+                raw_rewards = chosen.get('all_rewards', chosen['value']['rewards'])
                 receipt = dict(operation_id=operation_id, profile_id=storage.profile_id(), intent_hash=digest(request['intent']),
                                committed_at=now, quote=value['quote'], outcome=chosen['outcome'],
-                               rewards=[_descriptor(row, value['available']) for row in chosen['value']['rewards']])
+                               rewards=[_descriptor(row, value['available']) for row in raw_rewards])
                 db.execute('INSERT INTO settings(name,value) VALUES(?,?)', (_receipt_key(operation_id), text(receipt)))
                 response.update(status='committed', duplicate=False, receipt=receipt)
         final = native + [packet(response)]

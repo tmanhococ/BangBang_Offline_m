@@ -182,6 +182,23 @@ export class LobbyConnection {
     this.update();
   }
 
+  async register(username, password) {
+    const generation = ++this.generation;
+    await this.closeChannels();
+    if (generation !== this.generation) return false;
+    this.state = this.emptyState();
+    this.phase('web', 'Đang đăng ký tài khoản mới…');
+    let result;
+    try { result = await webRequest('/api/register', {username, password}); }
+    catch (error) {
+      if (generation === this.generation) this.phase('error', error.message);
+      return false;
+    }
+    if (generation !== this.generation) return false;
+    if (!result.success) { this.phase('error', result.message || 'Đăng ký thất bại.'); return false; }
+    return this.connect();
+  }
+
   async login(username, password) {
     const generation = ++this.generation;
     await this.closeChannels();

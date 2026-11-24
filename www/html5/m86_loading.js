@@ -168,6 +168,8 @@ export class M86LoadingView {
       const honor=this.centered(model.honor?.key,35.5,66);if(honor){honor.title=model.honor.name||'';card.append(honor);}
       const rank=this.centered(model.military?.key,52.5,37,.4);if(rank){rank.title=model.military.name||'';card.append(rank);}
       if(model.skill?.icon){const skill=at(assetImage(model.skill.icon),195,80,30,30);skill.title=nativeText(model.skill.name);card.append(skill);}
+      const tankLevel=at(element('span',`Lv.${c.tankLevel||1}`,'m86-loading-tank-level'),160,24,46,20);
+      tankLevel.title=`Cấp độ tank: ${c.tankLevel||1}`;card.append(tankLevel);
       const ping=c.accountId===state.accountId?at(element('span',null,'m86-loading-ping'),158,127,51,22):null;
       if(ping)card.append(ping);
       this.bars.set(c.accountId,{progress,label,ping});this.roster.append(card);

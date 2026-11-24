@@ -24,9 +24,13 @@ export function canonicalShopIntent(value){
       &&typeof value.payment==='string'&&['primary','alternate'].includes(value.payment)&&positive(value.quantity,99));
     return {kind:'buy',goods_id:value.goods_id,payment:value.payment,quantity:value.quantity};
   }
-  assert(value.kind==='open_box'&&exact(value,['kind','item'])&&exact(value.item,['container','uuid','template_id','count','slot_no']));
+  assert(value.kind==='open_box');
+  const allowed=value.quantity!==undefined?['kind','item','quantity']:['kind','item'];
+  assert(exact(value,allowed)&&exact(value.item,['container','uuid','template_id','count','slot_no']));
   const row=value.item,item=shopItemReference({uuid:row.uuid,templateId:row.template_id,count:row.count,slotNo:row.slot_no},row.container);
-  return {kind:'open_box',item};
+  const quantity=value.quantity!==undefined?value.quantity:1;
+  assert(positive(quantity,100));
+  return {kind:'open_box',item,quantity};
 }
 export function validShopProof(value){
   return exact(value,['generation','revision','expires','token'])&&typeof value.generation==='string'&&/^[a-f0-9]{32}$/.test(value.generation)
@@ -47,12 +51,12 @@ function validReward(row){
 const rewards=value=>Array.isArray(value)&&value.length<=256&&value.every(validReward);
 export function validShopQuote(value){
   if(!object(value)||!['buy','open_box'].includes(value.kind)||value.policy!=='all_or_nothing'
-    ||!positive(value.profile_id,0xffffffff)||!positive(value.item_id,0xffffffff)||!text(value.name,500)||!positive(value.quantity,99))return false;
+    ||!positive(value.profile_id,0xffffffff)||!positive(value.item_id,0xffffffff)||!text(value.name,500)||!positive(value.quantity,100))return false;
   if(value.kind==='buy')return positive(value.goods_id,0xffffffff)&&['primary','alternate'].includes(value.payment)
     &&[1,2,3].includes(value.coin_type)&&integer(value.unit_price)&&integer(value.total_price)
     &&value.total_price===value.unit_price*value.quantity&&rewards(value.rewards)&&value.rewards.length>0;
   const box=value.box;
-  if(value.quantity!==1||!object(box)||!text(box.duplicate_policy,2000))return false;
+  if(!object(box)||!text(box.duplicate_policy,2000))return false;
   if(box.mode==='fixed')return rewards(box.fixed_rewards)&&box.fixed_rewards.length>0;
   return box.mode==='random'&&box.main_percent===10&&box.material_percent===90&&rewards(box.main_rewards)
     &&box.main_rewards.length>0&&rewards(box.material_rewards)&&box.material_rewards.length>0;
@@ -92,5 +96,5 @@ export async function shopIntentHash(intent){
 export function shopQuoteMatchesIntent(quote,intent){
   if(!validShopQuote(quote))return false;
   return quote.kind===intent.kind&&(intent.kind==='buy'?quote.goods_id===intent.goods_id&&quote.payment===intent.payment
-    &&quote.quantity===intent.quantity:quote.item_id===intent.item.template_id&&quote.quantity===1);
+    &&quote.quantity===intent.quantity:quote.item_id===intent.item.template_id&&quote.quantity===(intent.quantity||1));
 }

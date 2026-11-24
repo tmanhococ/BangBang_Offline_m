@@ -14,10 +14,10 @@ __pycache__/
 .dist/
 # Development material is not part of this player distribution.
 /docs/
-/tests/
 /tools/
 /flash/
 /AGENTS.md
 /protocol_*.json
 /data/*test*.sqlite3
 **/provenance/
+cloudflared.exe

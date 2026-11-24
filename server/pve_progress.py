@@ -154,6 +154,10 @@ def complete(db, state, arena):
             progress['second_pet_pending'] = True
         current['best_grade'] = max(current['best_grade'],evaluation(arena)[0])
     packets = deliver(db, progress) if won else []
+    if won:
+        import match_rewards
+        _, pve_rew_pkts = match_rewards.apply_pve_rewards(state, db, won)
+        packets.extend(pve_rew_pkts)
     shop._set(db, SETTING, progress)
     packets.append((1304, city_body(progress)))
     return packets

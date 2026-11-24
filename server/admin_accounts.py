@@ -82,12 +82,16 @@ def canonical(body):
     expected = {'action', 'request_id', 'username'} if action == 'create' else {'action', 'request_id', 'target'}
     if action in ('create', 'password'):
         expected.add('password')
-    if set(body) != expected:
+    allowed = set(expected)
+    if action == 'create':
+        allowed.add('buff')
+    if not (expected <= set(body) <= allowed):
         raise AccountError('account_payload_invalid', 'Nội dung thao tác tài khoản không hợp lệ.', status=400)
     result = dict(action=action, request_id=_request_id(body['request_id']))
     if action == 'create':
         username = _username(body['username'])
         result['username'] = username
+        result['buff'] = bool(body.get('buff', True))
     else:
         target = body['target']
         if (not isinstance(target, dict) or set(target) != {'username', 'profile_id', 'revision'}
@@ -304,6 +308,9 @@ def execute(body, key, proof_check):
                 if action == 'create':
                     salt = secrets.token_hex(8)
                     db.execute('INSERT INTO users VALUES(?,?,?,?)', (username, salt, hash_pw(payload['password'], salt), int(time.time())))
+                    is_buff = 1 if payload.get('buff', True) else 0
+                    db.execute('CREATE TABLE IF NOT EXISTS account_buff_flags (username TEXT PRIMARY KEY, is_buff INTEGER NOT NULL DEFAULT 0)')
+                    db.execute('INSERT OR REPLACE INTO account_buff_flags (username, is_buff) VALUES (?,?)', (username, is_buff))
                 elif action == 'password':
                     salt = secrets.token_hex(8)
                     db.execute('UPDATE users SET salt=?,pw=? WHERE username=?', (salt, hash_pw(payload['password'], salt), username))

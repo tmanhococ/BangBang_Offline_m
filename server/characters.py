@@ -38,6 +38,9 @@ def initialize():
         db.execute('CREATE TABLE IF NOT EXISTS characters ('
                    'profile_id INTEGER PRIMARY KEY REFERENCES worlds(profile_id),'
                    'username TEXT UNIQUE NOT NULL REFERENCES users(username))')
+        db.execute('CREATE TABLE IF NOT EXISTS account_buff_flags ('
+                   'username TEXT PRIMARY KEY,'
+                   'is_buff INTEGER NOT NULL DEFAULT 0)')
         import military_rank
         military_rank.initialize_ranking(db)
         if db.execute('SELECT 1 FROM characters WHERE profile_id=?', (storage.PROFILE_ID,)).fetchone():
@@ -66,40 +69,96 @@ def for_username(username, db=None):
         return int(row[0])
     if not db.execute('SELECT 1 FROM users WHERE username=?', (username,)).fetchone():
         raise ValueError('Tài khoản không tồn tại.')
-    row = db.execute('SELECT value FROM settings WHERE name=?', ('character_seed_v1',)).fetchone()
-    if row is None:
-        raise RuntimeError('Character migration has not been installed')
-    seed = json.loads(row[0])
+    db.execute('CREATE TABLE IF NOT EXISTS account_buff_flags (username TEXT PRIMARY KEY, is_buff INTEGER NOT NULL DEFAULT 0)')
+    buff_row = db.execute('SELECT is_buff FROM account_buff_flags WHERE username=?', (username,)).fetchone()
+    is_buff = int(buff_row[0]) if buff_row is not None else 1
+
     ident = account_lifecycle.next_profile_id(db)
-    state = deepcopy(seed['state'])
-    state.update(char_id=ident, char_uuid=f'multiplayer-char-{ident}', name=username,
-                 room=None, battle=None, avatar=starter_appearance.ASH, decorate_id=0,
-                 crystal_build={}, military_build={}, military_star=0, guild_build={},
-                 booster_build={}, booster_attack=0)
-    records = []
-    for original in seed['tanks']:
-        tank = deepcopy(original)
-        tank.update(uuid=f'char-{ident}-tank-{tank["tank_id"]}', crystal_scheme_id=0,
-                    com_skill_id=0, war_count=0, week_war_count=0, battle_gains=0)
-        records.append(tank)
-    selected = next(t for t in records if t['tank_id'] == state['tank_id'])
-    state['selected_tank_uuid'] = selected['uuid']
-    db.execute('INSERT INTO worlds(profile_id,state) VALUES (?,?)', (ident, _json(state)))
-    db.execute('INSERT INTO characters VALUES (?,?)', (ident, username))
-    db.executemany('INSERT INTO garage VALUES (?,?,?,?,?)',
-                   ((ident, i, t['uuid'], t['tank_id'], _json(t)) for i, t in enumerate(records)))
-    import military_rank
-    military_rank.record_stars(db, ident, military_rank.count_stars(records))
-    skins = deepcopy(seed['skins'])
-    for item in skins:
-        item['uuid'] = 'skin-' + uuid.uuid4().hex
+
+    if is_buff:
+        row = db.execute('SELECT value FROM settings WHERE name=?', ('character_seed_v1',)).fetchone()
+        if row is None:
+            raise RuntimeError('Character migration has not been installed')
+        seed = json.loads(row[0])
+        state = deepcopy(seed['state'])
+        state.update(char_id=ident, char_uuid=f'multiplayer-char-{ident}', name=username,
+                     room=None, battle=None, avatar=starter_appearance.ASH, decorate_id=0,
+                     crystal_build={}, military_build={}, military_star=0, guild_build={},
+                     booster_build={}, booster_attack=0)
+        records = []
+        for original in seed['tanks']:
+            tank = deepcopy(original)
+            tank.update(uuid=f'char-{ident}-tank-{tank["tank_id"]}', crystal_scheme_id=0,
+                        com_skill_id=0, war_count=0, week_war_count=0, battle_gains=0)
+            records.append(tank)
+        selected = next(t for t in records if t['tank_id'] == state['tank_id'])
+        state['selected_tank_uuid'] = selected['uuid']
+        db.execute('INSERT INTO worlds(profile_id,state) VALUES (?,?)', (ident, _json(state)))
+        db.execute('INSERT INTO characters VALUES (?,?)', (ident, username))
+        db.executemany('INSERT INTO garage VALUES (?,?,?,?,?)',
+                       ((ident, i, t['uuid'], t['tank_id'], _json(t)) for i, t in enumerate(records)))
+        import military_rank
+        military_rank.record_stars(db, ident, military_rank.count_stars(records))
+        skins = deepcopy(seed['skins'])
+        for item in skins:
+            item['uuid'] = 'skin-' + uuid.uuid4().hex
+        currency = seed['currency']
+    else:
+        # Starter tank IDs for level 1 account: Iron Man (10000001), Chopper (10000029), Gundam (10000019)
+        starter_tank_ids = [10000001, 10000029, 10000019]
+        now = int(time.time())
+        records = []
+        for t_id in starter_tank_ids:
+            records.append({
+                'uuid': f'char-{ident}-tank-{t_id}',
+                'tank_id': t_id,
+                'level': 1,
+                'n_exp': 0,
+                'ext_flag': 0,
+                'stth_level': 0,
+                'external_id': 0,
+                'war_count': 0,
+                'week_war_count': 0,
+                'cont_type': 0,
+                'cash_hire': 0,
+                'coin_hire': 0,
+                'exist_time': 0,
+                'halo_id': 0,
+                'skin_frame_type': 0,
+                'own_time': now,
+                'stth_count': 0,
+                'com_skill_id': 0,
+                'crystal_scheme_id': 0,
+                'tal_page_uuid': '',
+                'prof_val': 0,
+                'battle_gains': 0,
+            })
+        selected = records[0]  # Iron Man
+        state = dict(
+            char_id=ident, char_uuid=f'multiplayer-char-{ident}', name=username,
+            level=1, sex=1, vip_level=0, tank_id=selected['tank_id'], tank_level=1,
+            tank_ext=0, halo_id=0, skin_frame_type=0, room=None, bot=None,
+            selected_tank_uuid=selected['uuid'], ally_bot=None, tank_strength=0,
+            bots=None, avatar=starter_appearance.ASH, decorate_id=0,
+            crystal_build={}, military_star=0, military_build={}, battle=None,
+            guild_build={}, booster_build={}, booster_attack=0
+        )
+        db.execute('INSERT INTO worlds(profile_id,state) VALUES (?,?)', (ident, _json(state)))
+        db.execute('INSERT INTO characters VALUES (?,?)', (ident, username))
+        db.executemany('INSERT INTO garage VALUES (?,?,?,?,?)',
+                       ((ident, i, t['uuid'], t['tank_id'], _json(t)) for i, t in enumerate(records)))
+        import military_rank
+        military_rank.record_stars(db, ident, 0)
+        skins = []
+        currency = [0, 10000, 0, 0, 0, 0]  # 10,000 Silver, 0 Cash
+
     settings = {'inventory': {'6': skins, '10': [], '2': [], '3': [],
-                             '4': [starter_appearance.new_item(ident)], '7': []},
-                'cosmetic_shop_profile': dict(avatar=starter_appearance.ASH, decorate=0, currency=seed['currency']),
+                              '4': [starter_appearance.new_item(ident)], '7': []},
+                'cosmetic_shop_profile': dict(avatar=starter_appearance.ASH, decorate=0, currency=currency),
                 starter_appearance.marker_key(ident): starter_appearance.receipt(ident, equipped=True, added=True),
                 'crystal_profile': {'boards': {str(i): {'name': '', 'items': [0]*30} for i in (1, 2)},
                                     'rolls': [0, 0]}}
-    db.executemany('INSERT INTO settings VALUES (?,?)',
+    db.executemany('INSERT OR REPLACE INTO settings VALUES (?,?)',
                    ((storage.setting_key(k, ident), _json(v)) for k, v in settings.items()))
     return ident
 
@@ -207,6 +266,7 @@ def login_payload(mid, body, state):
         head = bytearray(body[:126])
         struct.pack_into('<I', head, 0, state['char_id'])
         head[4:6] = bytes((state['sex'], state['level']))
+        struct.pack_into('<i', head, 10, int(state.get('n_exp', 0)))
         import inventory
         with storage.connection() as db:
             struct.pack_into('<H', head, 118, inventory.grocery_capacity(db)-45)

@@ -245,6 +245,31 @@ byId('login-form').addEventListener('submit', event => {
   const username = byId('username').value.trim(), password = byId('password').value;
   byId('password').value = ''; run(() => client.login(username, password));
 });
+byId('tab-login')?.addEventListener('click', () => {
+  byId('tab-login').className = 'primary';
+  byId('tab-register').className = 'quiet';
+  byId('login-form').hidden = false;
+  byId('register-form').hidden = true;
+});
+byId('tab-register')?.addEventListener('click', () => {
+  byId('tab-register').className = 'primary';
+  byId('tab-login').className = 'quiet';
+  byId('register-form').hidden = false;
+  byId('login-form').hidden = true;
+});
+byId('register-form')?.addEventListener('submit', event => {
+  event.preventDefault();
+  const username = byId('reg-username').value.trim();
+  const password = byId('reg-password').value;
+  const repeat = byId('reg-password-repeat').value;
+  if (password !== repeat) {
+    alert('Mật khẩu nhập lại không khớp!');
+    return;
+  }
+  byId('reg-password').value = '';
+  byId('reg-password-repeat').value = '';
+  run(() => client.register(username, password));
+});
 byId('reconnect').onclick = () => run(() => client.connect());
 byId('disconnect').onclick = () => run(() => client.disconnect());
 byId('logout').onclick = () => run(() => client.logout());

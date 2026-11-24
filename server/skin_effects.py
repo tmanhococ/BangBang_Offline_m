@@ -38,7 +38,7 @@ def translate_packets(packets, state, arena=None, viewer=None):
         fighters={actor.id:actor.info for actor in arena.actors.values()}
     selected = {owner: _maps[info.get('tank_ext')]
                 for owner, info in fighters.items()
-                if info.get('tank_ext') in _maps
+                if info and info.get('tank_ext') in _maps
                 and _maps[info['tank_ext']]['tank'] == info.get('tank_id')}
     if not selected:
         return packets
@@ -52,7 +52,8 @@ def translate_packets(packets, state, arena=None, viewer=None):
 
     if arena is not None:
         for actor in arena.actors.values():
-            owned_npc(actor.id, actor.info.get('npc_template'), actor.info.get('owner'))
+            if actor and actor.info:
+                owned_npc(actor.id, actor.info.get('npc_template'), actor.info.get('owner'))
     # A spawn packet may precede its own buff/fire in this batch. This also
     # covers passive objects (device/wall) which aren't combat actors.
     for mid, body in packets:

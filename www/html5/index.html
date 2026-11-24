@@ -228,10 +228,20 @@
         <ol class="stages" aria-label="Các bước kết nối">
           <li data-stage="web"><span>1</span>Phiên web</li><li data-stage="auth"><span>2</span>Đăng nhập</li><li data-stage="gate"><span>3</span>Nhân vật</li><li data-stage="lobby"><span>4</span>Dữ liệu sảnh</li>
         </ol>
+        <div class="auth-tabs" style="display:flex;gap:8px;margin-bottom:12px;">
+          <button id="tab-login" type="button" class="primary" style="flex:1;">Đăng nhập</button>
+          <button id="tab-register" type="button" class="quiet" style="flex:1;">Đăng ký tài khoản</button>
+        </div>
         <form id="login-form" autocomplete="off">
-          <label>Tài khoản<input id="username" name="username" type="text" minlength="3" maxlength="32" autocomplete="username" required placeholder="Nhập tài khoản test"></label>
+          <label>Tài khoản<input id="username" name="username" type="text" minlength="3" maxlength="32" autocomplete="username" required placeholder="Nhập tài khoản"></label>
           <label>Mật khẩu<input id="password" name="password" type="password" minlength="6" autocomplete="current-password" required placeholder="Mật khẩu tài khoản"></label>
           <button id="login" type="submit" class="primary">Đăng nhập & vào sảnh</button>
+        </form>
+        <form id="register-form" autocomplete="off" hidden>
+          <label>Tài khoản mới<input id="reg-username" name="reg-username" type="text" minlength="3" maxlength="32" autocomplete="username" required placeholder="Tên đăng nhập 3–32 ký tự"></label>
+          <label>Mật khẩu mới<input id="reg-password" name="reg-password" type="password" minlength="6" autocomplete="new-password" required placeholder="Mật khẩu tối thiểu 6 ký tự"></label>
+          <label>Nhập lại mật khẩu<input id="reg-password-repeat" name="reg-password-repeat" type="password" minlength="6" autocomplete="new-password" required placeholder="Nhập lại mật khẩu"></label>
+          <button id="register" type="submit" class="primary">Đăng ký & vào game (Level 1)</button>
         </form>
         <div class="actions"><button id="reconnect" type="button" disabled>Kết nối lại</button><button id="disconnect" type="button" disabled>Ngắt kết nối</button><button id="logout" type="button" disabled>Đăng xuất</button></div>
         <p class="note">Dùng tài khoản trên bản server test. Phiên web, nhân vật và kho tank được xác nhận bởi server hiện hành.</p>
@@ -276,7 +286,7 @@
             <div id="battle-panel" hidden>
               <div class="battle-toolbar">
                 <div class="battle-score"><span id="score-blue">—</span><span>:</span><span id="score-red">—</span><time id="battle-clock">—:—</time></div>
-                <div class="battle-options"><button id="battle-sound" type="button" aria-pressed="false">Bật âm thanh</button><button id="battle-fullscreen" type="button">Toàn màn hình</button><label>Góc nhìn <select id="battle-zoom"><option value="0.75">Rộng</option><option value="1" selected>Gốc</option><option value="1.25">Gần</option></select></label></div>
+                <div class="battle-options"><button id="battle-music" type="button" aria-pressed="true">Bật nhạc nền</button><button id="battle-sound" type="button" aria-pressed="false">Bật âm thanh</button><button id="battle-fullscreen" type="button">Toàn màn hình</button><label>Góc nhìn <select id="battle-zoom"><option value="0.75">Rộng</option><option value="1" selected>Gốc</option><option value="1.25">Gần</option></select></label></div>
               </div>
               <div id="battle-stage" class="battle-stage">
                 <canvas id="battle-canvas" tabindex="0" aria-label="Trận Bang Bang. WASD hoặc phím mũi tên để đi, chuột để ngắm và bắn, E, R, Space để dùng kỹ năng."></canvas>
@@ -284,6 +294,7 @@
                 <div id="robo-hud-host" hidden></div>
                 <section id="robo-settings" class="robo-settings" aria-label="Cài đặt trận đấu" hidden>
                   <h3>Cài đặt trận đấu</h3>
+                  <button id="robo-music" type="button">Bật nhạc nền</button>
                   <button id="robo-sound" type="button">Bật âm thanh</button>
                   <button id="robo-fullscreen" type="button">Toàn màn hình</button>
                   <label>Đồ họa <select id="robo-renderer"><option value="auto">Tự động · ưu tiên GPU</option><option value="canvas">Tương thích</option></select></label>

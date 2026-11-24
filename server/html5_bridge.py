@@ -125,7 +125,8 @@ def _same_origin(handler):
         return False
     try:
         parsed = urlsplit(origin)
-        scheme = "https" if isinstance(handler.connection, ssl.SSLSocket) else "http"
+        forwarded_proto = handler.headers.get("X-Forwarded-Proto")
+        scheme = forwarded_proto if forwarded_proto in ("http", "https") else ("https" if isinstance(handler.connection, ssl.SSLSocket) else "http")
         return (parsed.scheme == scheme and parsed.netloc.lower() == host.lower()
                 and parsed.username is None and not parsed.path.rstrip("/")
                 and not parsed.query and not parsed.fragment)

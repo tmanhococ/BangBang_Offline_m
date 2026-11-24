@@ -39,8 +39,9 @@ function formMode(){
   $('account-edit-title').textContent=LABELS[action];$('account-password-fields').hidden=!['create','password'].includes(action);
   $('account-password').required=$('account-password-repeat').required=['create','password'].includes(action);
   $('account-username').readOnly=!create;
+  if($('account-buff-field'))$('account-buff-field').hidden=!create;
   if(!create&&state.selected){$('account-username').value=state.selected.username;$('account-selected').textContent=`${state.selected.name||'Chưa tạo nhân vật'} · ${state.selected.profile_id===null?'Chưa có ID nhân vật':`ID ${state.selected.profile_id}`} · ${state.selected.deleted?'Đã xóa mềm':'Đang hoạt động'}`;}
-  else if(create){$('account-selected').textContent='Chỉ tạo tài khoản đăng nhập, không cấp thêm đồ hoặc tiền.';}
+  else if(create){$('account-selected').textContent=$('account-buff')?.checked?'Tài khoản sẽ được buff: Cấp 36, VIP 6, có sẵn full tank và xu/bạc.':'Tài khoản thường: Cấp 1, VIP 0, 3 tank cơ bản khởi đầu.';}
   sync();
 }
 function newAccount(){if(blocked())return;state.selected=null;$('account-action').value='create';$('account-username').value='';wipeSecrets();formMode();}
@@ -59,7 +60,11 @@ async function loadAccounts(reset=false){
 function payload(){
   const action=$('account-action').value;if(!Object.hasOwn(LABELS,action))throw new Error('Chọn thao tác hợp lệ.');
   const result={action,request_id:id()};
-  if(action==='create'){result.username=$('account-username').value.trim();if(result.username!=='1'&&(result.username.length<3||result.username.length>32))throw new Error('Tên đăng nhập cần 3–32 ký tự.');}
+  if(action==='create'){
+    result.username=$('account-username').value.trim();
+    if(result.username!=='1'&&(result.username.length<3||result.username.length>32))throw new Error('Tên đăng nhập cần 3–32 ký tự.');
+    result.buff=!!$('account-buff')?.checked;
+  }
   else{if(!state.selected)throw new Error('Chọn tài khoản ở danh sách trước.');result.target={username:state.selected.username,profile_id:state.selected.profile_id,revision:state.selected.revision};}
   if(['create','password'].includes(action)){const username=result.username||result.target.username;result.password=$('account-password').value;
     if(result.password!==$('account-password-repeat').value)throw new Error('Hai lần nhập mật khẩu chưa giống nhau.');
@@ -121,6 +126,7 @@ $('account-form').addEventListener('submit',event=>{event.preventDefault();previ
 $('account-search').addEventListener('submit',event=>{event.preventDefault();loadAccounts(true);});
 $('account-status').addEventListener('change',()=>loadAccounts(true));
 $('account-new').addEventListener('click',newAccount);
+$('account-buff')?.addEventListener('change',formMode);
 $('account-action').addEventListener('change',()=>{wipeSecrets();if($('account-action').value==='create')$('account-username').value='';formMode();});
 $('account-confirm').addEventListener('click',execute);$('account-delete-confirm').addEventListener('input',sync);
 $('account-check').addEventListener('click',()=>resolve());$('account-cancel').addEventListener('click',()=>resolve(true));

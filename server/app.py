@@ -41,6 +41,8 @@ STORE = Store()
 
 
 class Handler(SimpleHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(WWW), **kwargs)
 
@@ -139,7 +141,8 @@ class Handler(SimpleHTTPRequestHandler):
                                     "combat_acceleration": acceleration_status()})
         from guild_protocol import HTTP_ROUTES
         from character_info import HTTP_ROUTES as CHARACTER_ROUTES
-        if path.startswith("/capi") or path == "/goodsshopquery.php" or path.lstrip('/').lower() in HTTP_ROUTES | CHARACTER_ROUTES:
+        from capi import CAPI_ROUTES
+        if path.startswith("/capi") or path.lstrip('/').lower() in HTTP_ROUTES | CHARACTER_ROUTES | CAPI_ROUTES:
             from capi import handle
 
             hit = handle(self.path)
@@ -216,6 +219,13 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200,dict(success=True,setup=setup,tanks=list(AI_TANKS.values())))
             except ValueError as exc:
                 return self._json(400,dict(success=False,message=str(exc)))
+        if path == "/api/register":
+            payload = self._read_json()
+            result = STORE.register(str(payload.get("username") or ""), str(payload.get("password") or ""))
+            if result.get("success"):
+                cookie = result.pop("cookie")
+                return self._json(200, result, set_cookie=cookie)
+            return self._json(200, result)
         if path == "/api/login":
             payload = self._read_json()
             result = STORE.login(str(payload.get("username") or ""), str(payload.get("password") or ""))
@@ -237,6 +247,8 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 class Server(ThreadingHTTPServer):
+    request_queue_size = 128
+
     def handle_error(self, request, client_address):
         log.exception('[http] Request failed from %s', client_address)
 

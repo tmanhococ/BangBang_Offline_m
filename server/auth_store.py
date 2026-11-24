@@ -30,17 +30,36 @@ class Store:
         if not local_test and (not 3<=len(username)<=32 or len(password)<6):
             return {'success':False,'message':'Tài khoản 3–32 ký tự, mật khẩu ≥ 6.'}
         with account_lock(username, self.path), connection(self.path,write=True) as db:
+            db.execute('CREATE TABLE IF NOT EXISTS account_buff_flags (username TEXT PRIMARY KEY, is_buff INTEGER NOT NULL DEFAULT 0)')
             if blocked(db, username):
                 return {'success':False,'message':'Tài khoản đã bị xóa. Liên hệ quản trị local.'}
             user = db.execute('SELECT salt,pw FROM users WHERE username=?',(username,)).fetchone()
             if user is None:
-                salt = secrets.token_hex(8)
-                db.execute('INSERT INTO users VALUES (?,?,?,?)',
-                           (username,salt,hash_pw(password,salt),int(time.time())))
+                return {'success':False,'message':'Tài khoản không tồn tại. Vui lòng đăng ký.'}
             elif user['pw']!=hash_pw(password,user['salt']):
                 return {'success':False,'message':'Sai tài khoản hoặc mật khẩu.'}
             token,cookie = self._mint(db,username)
         return dict(success=True,username=username,loginToken=token,cookie=cookie)
+
+    def register(self, username, password, is_buff=0):
+        username = username.strip()
+        local_test = username == '1' and len(password) >= 1
+        if not local_test and (not 3 <= len(username) <= 32 or len(password) < 6):
+            return {'success': False, 'message': 'Tài khoản 3–32 ký tự, mật khẩu ≥ 6 ký tự.'}
+        with account_lock(username, self.path), connection(self.path, write=True) as db:
+            db.execute('CREATE TABLE IF NOT EXISTS account_buff_flags (username TEXT PRIMARY KEY, is_buff INTEGER NOT NULL DEFAULT 0)')
+            if blocked(db, username):
+                return {'success': False, 'message': 'Tài khoản đã bị xóa. Liên hệ quản trị local.'}
+            existing = db.execute('SELECT 1 FROM users WHERE username=?', (username,)).fetchone()
+            if existing is not None:
+                return {'success': False, 'message': 'Tên tài khoản đã tồn tại.'}
+            salt = secrets.token_hex(8)
+            db.execute('INSERT INTO users VALUES (?,?,?,?)',
+                       (username, salt, hash_pw(password, salt), int(time.time())))
+            db.execute('INSERT OR REPLACE INTO account_buff_flags (username, is_buff) VALUES (?,?)',
+                       (username, int(bool(is_buff))))
+            token, cookie = self._mint(db, username)
+        return dict(success=True, username=username, loginToken=token, cookie=cookie)
 
     def _session(self, field, value, lifetime, expected_username=None):
         if not value:

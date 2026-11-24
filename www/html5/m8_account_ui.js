@@ -30,6 +30,16 @@ import {renderInventoryShell,placeInventoryDetails} from './m82_account_shell.js
 import {nativeMilitaryView,ownGuildMember} from './m8_account_state.js';
 
 const BAG_TYPES=[[2,'Vật phẩm'],[3,'Nguyên liệu'],[4,'Avatar'],[7,'Phông nền'],[6,'Skin tank'],[10,'Pha lê'],[9,'Hào quang'],[8,'Tạm giữ'],[1,'Trang bị'],[5,'Bổ trợ']];
+const MATERIAL_CONVERSIONS={
+  3000001:{recipeId:58,targetId:3000003,targetName:'Thép',fee:50},
+  3000003:{recipeId:59,targetId:3000004,targetName:'Carbon',fee:100},
+  3000004:{recipeId:60,targetId:3000005,targetName:'Hợp kim nhôm',fee:200},
+  3000005:{recipeId:61,targetId:3000006,targetName:'Thép vonfram',fee:400},
+  3000051:{recipeId:62,targetId:3000052,targetName:'Hồng ngọc',fee:50},
+  3000052:{recipeId:63,targetId:3000053,targetName:'Lục ngọc',fee:100},
+  3000053:{recipeId:64,targetId:3000054,targetName:'Tử bảo',fee:200},
+  3000054:{recipeId:65,targetId:3000055,targetName:'Lam bảo',fee:400}
+};
 const SECTIONS={inventory:'Kho đồ',shop:'Cửa hàng',profile:'Hồ sơ',military:'Quân hàm',leaderboard:'Xếp hạng',guild:'Guild'};
 // Native guilds.SLOTS, not a guessed contiguous range. Slot 1 accepts active skills.
 const GUILD_SLOTS=[1,5,6,7,8];
@@ -294,6 +304,34 @@ export class M8AccountUI {
       else {const shopIcon=normalShopIcon(normalShopOffer(this,selected.templateId)?.icon,title,'m8-account-item-preview',125,130);if(shopIcon)detail.append(shopIcon);}
       detail.append(note(nativeText(cosmetic?.description||definition.description||'')),note(`Số lượng: ${numberText(selected.count)}`));
       appendNormalShopBoxAction(this,detail,selected,this.bag);
+      const conv = this.bag === 3 ? MATERIAL_CONVERSIONS[selected.templateId] : null;
+      if (conv) {
+        detail.append(note(`Công thức 5:1 ➔ 1 ${conv.targetName} (Phí: ${numberText(conv.fee)} Bạc)`));
+        const maxCraft = Math.floor(selected.count / 5);
+        const actions = element('div', null, 'm81345-box-actions');
+        if (maxCraft >= 1) {
+          actions.append(this.button('Hợp thành 1', () => this.confirm('Hợp thành nguyên liệu',
+            `Đổi 5 ${title} + ${numberText(conv.fee)} Bạc lấy 1 ${conv.targetName}?`,
+            () => this.client.convertMaterial(conv.recipeId, 1),
+            {success: `Đã hợp thành 1 ${conv.targetName}.`}),
+            {disabled: !this.canMutate(), testId: 'material-convert-1'}));
+        }
+        if (maxCraft >= 5) {
+          actions.append(this.button('Hợp thành 5', () => this.confirm('Hợp thành nguyên liệu',
+            `Đổi 25 ${title} + ${numberText(conv.fee * 5)} Bạc lấy 5 ${conv.targetName}?`,
+            () => this.client.convertMaterial(conv.recipeId, 5),
+            {success: `Đã hợp thành 5 ${conv.targetName}.`}),
+            {disabled: !this.canMutate(), testId: 'material-convert-5'}));
+        }
+        if (maxCraft > 1 && maxCraft !== 5) {
+          actions.append(this.button(`Hợp thành tất cả (${maxCraft})`, () => this.confirm('Hợp thành nguyên liệu',
+            `Đổi ${maxCraft * 5} ${title} + ${numberText(conv.fee * maxCraft)} Bạc lấy ${maxCraft} ${conv.targetName}?`,
+            () => this.client.convertMaterial(conv.recipeId, maxCraft),
+            {success: `Đã hợp thành ${maxCraft} ${conv.targetName}.`}),
+            {disabled: !this.canMutate(), testId: 'material-convert-all'}));
+        }
+        detail.append(actions);
+      }
       if(this.bag===2&&selected.templateId===2600002){
         const input=this.input('renameCharacter','',{maxLength:12,placeholder:'Tên mới (1–12 ký tự)'});
         input.setAttribute('aria-label','Tên nhân vật mới');input.dataset.testid='rename-character-name';

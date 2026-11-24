@@ -190,13 +190,13 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 360,
+          "price": 3600,
           "quantity": 1
         },
         {
           "key": "alternate",
           "coinType": 2,
-          "price": 100000,
+          "price": 1000000,
           "quantity": 1
         }
       ],
@@ -223,13 +223,13 @@
         {
           "key": "primary",
           "coinType": 1,
-          "price": 360,
+          "price": 3600,
           "quantity": 1
         },
         {
           "key": "alternate",
           "coinType": 2,
-          "price": 100000,
+          "price": 1000000,
           "quantity": 1
         }
       ],
@@ -256,7 +256,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 399,
+          "price": 3990,
           "quantity": 1
         }
       ],
@@ -283,7 +283,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 2000,
+          "price": 20000,
           "quantity": 1
         }
       ],
@@ -310,7 +310,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 799,
+          "price": 7990,
           "quantity": 1
         }
       ],
@@ -337,7 +337,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 579,
+          "price": 5790,
           "quantity": 1
         }
       ],
@@ -364,7 +364,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 398,
+          "price": 3980,
           "quantity": 1
         }
       ],
@@ -391,7 +391,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 1500,
+          "price": 15000,
           "quantity": 1
         }
       ],
@@ -418,7 +418,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 799,
+          "price": 7990,
           "quantity": 1
         }
       ],
@@ -445,7 +445,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 799,
+          "price": 7990,
           "quantity": 1
         }
       ],
@@ -472,7 +472,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 579,
+          "price": 5790,
           "quantity": 1
         }
       ],
@@ -499,7 +499,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 579,
+          "price": 5790,
           "quantity": 1
         }
       ],
@@ -526,7 +526,7 @@
         {
           "key": "primary",
           "coinType": 2,
-          "price": 100000,
+          "price": 1000000,
           "quantity": 1
         }
       ],
@@ -553,7 +553,7 @@
         {
           "key": "primary",
           "coinType": 3,
-          "price": 399,
+          "price": 3990,
           "quantity": 1
         }
       ],
@@ -4032,7 +4032,7 @@
       "name": "Hạt Nhân Vạn Năng No.10",
       "description": "Vật liệu tăng 19 sao và 20 sao cho Trợ Thủ Tank, nguồn độc lực của trợ thủ.",
       "icon": {
-        "url": "/html5/assets/m81314/original/e283c8a5f9378bc4c61324dc040edc10dc4560c5afa814183d8dea804d6ccfc8.png",
+        "url": "/rez/zh_CN/icon/item/1e34be57e89061235ead71ba36e4ea3b.png",
         "width": 100,
         "height": 100,
         "sha256": "e283c8a5f9378bc4c61324dc040edc10dc4560c5afa814183d8dea804d6ccfc8"
@@ -4059,7 +4059,7 @@
       "name": "Hạt Nhân Vạn Năng No.9",
       "description": "Vật liệu tăng 17 sao và 18 sao cho Trợ Thủ Tank, nguồn độc lực của trợ thủ.",
       "icon": {
-        "url": "/html5/assets/m81314/original/eef8efa36e3cc09301061dd9f87d7e20d3424e050464d7dbba2f64f7d2bea47a.png",
+        "url": "/rez/zh_CN/icon/item/f6847176be529f512feff381bf528541.png",
         "width": 100,
         "height": 100,
         "sha256": "eef8efa36e3cc09301061dd9f87d7e20d3424e050464d7dbba2f64f7d2bea47a"
@@ -4086,7 +4086,7 @@
       "name": "Hạt Nhân Vạn Năng No.8",
       "description": "Vật liệu tăng 15 sao và 16 sao cho Trợ Thủ Tank, nguồn độc lực của trợ thủ.",
       "icon": {
-        "url": "/html5/assets/m81314/original/dbc3c1de82bc7520741c2a64cce6d01f66ce2492a1c1de3c3706b08650fc0b1b.png",
+        "url": "/rez/zh_CN/icon/item/caeab0a2c98621d0ba09b3070ba0b5a2.png",
         "width": 100,
         "height": 100,
         "sha256": "dbc3c1de82bc7520741c2a64cce6d01f66ce2492a1c1de3c3706b08650fc0b1b"
@@ -4113,7 +4113,7 @@
       "name": "Hạt Nhân Vạn Năng No.7",
       "description": "Vật liệu tăng 13 sao và 14 sao cho Trợ Thủ Tank, nguồn độc lực của trợ thủ.",
       "icon": {
-        "url": "/html5/assets/m81314/original/0be8bba6aaffa642349008758cdb4bcc6ac59be06c6608167160a570b48f6126.png",
+        "url": "/rez/zh_CN/icon/item/b7d8a85d5efb7c5ecb104b31ea64f6ad.png",
         "width": 100,
         "height": 100,
         "sha256": "0be8bba6aaffa642349008758cdb4bcc6ac59be06c6608167160a570b48f6126"
@@ -4140,7 +4140,7 @@
       "name": "Hạt Nhân Vạn Năng No.6",
       "description": "Vật liệu tăng 11 sao và 12 sao cho Trợ Thủ Tank, nguồn độc lực của trợ thủ.",
       "icon": {
-        "url": "/html5/assets/m81314/original/9b442384d455d1f33bef6d252235d699e27d2ef655fe3761a7e45dd897c06d78.png",
+        "url": "/rez/zh_CN/icon/item/de59a644c7d4e7fff5612a6745ac11b2.png",
         "width": 100,
         "height": 100,
         "sha256": "9b442384d455d1f33bef6d252235d699e27d2ef655fe3761a7e45dd897c06d78"
@@ -4167,7 +4167,7 @@
       "name": "Hạt Nhân Vạn Năng No.5",
       "description": "Vật liệu tăng 9 sao và 10 sao cho Trợ Thủ, hạt nhân năng lượng tương thích mạnh.",
       "icon": {
-        "url": "/html5/assets/m81314/original/7ed1f733576da85522c815318623e0b5b7434607e5d0c7e74d9a7f9a6added99.png",
+        "url": "/rez/zh_CN/icon/item/6c4826a56749faa510f610c33f195a02.png",
         "width": 100,
         "height": 100,
         "sha256": "7ed1f733576da85522c815318623e0b5b7434607e5d0c7e74d9a7f9a6added99"
@@ -4194,7 +4194,7 @@
       "name": "Hạt Nhân Vạn Năng No.4",
       "description": "Vật liệu tăng 7 sao và 8 sao cho Trợ Thủ, hạt nhân năng lượng tương thích mạnh.",
       "icon": {
-        "url": "/html5/assets/m81314/original/4cbe504033a251c49c70cdd75445acceb3d5e111882505266fbc3e342f14d3dc.png",
+        "url": "/rez/zh_CN/icon/item/a940286ff04c6a7d35c2e62de8add689.png",
         "width": 100,
         "height": 100,
         "sha256": "4cbe504033a251c49c70cdd75445acceb3d5e111882505266fbc3e342f14d3dc"
@@ -4221,7 +4221,7 @@
       "name": "Hạt Nhân Vạn Năng No.3",
       "description": "Vật liệu tăng 5 sao và 6 sao cho Trợ Thủ, hạt nhân năng lượng tương thích mạnh.",
       "icon": {
-        "url": "/html5/assets/m81314/original/10ae533846695bff7091245485b170a92e25861b74f332e3d498eb350eb953a6.png",
+        "url": "/rez/zh_CN/icon/item/26bd4c6887c0365401ae134df517a62f.png",
         "width": 100,
         "height": 100,
         "sha256": "10ae533846695bff7091245485b170a92e25861b74f332e3d498eb350eb953a6"
@@ -4248,7 +4248,7 @@
       "name": "Hạt Nhân Vạn Năng No.2",
       "description": "Vật liệu tăng 3 sao và 4 sao cho Trợ Thủ, hạt nhân năng lượng tương thích mạnh.",
       "icon": {
-        "url": "/html5/assets/m81314/original/342e8933a0a02b31ed4dc4b0aac0831a7505fb2c9e8d8566771d6b6db8bead7b.png",
+        "url": "/rez/zh_CN/icon/item/3c8cd274945e6ef8795c07241d426002.png",
         "width": 100,
         "height": 100,
         "sha256": "342e8933a0a02b31ed4dc4b0aac0831a7505fb2c9e8d8566771d6b6db8bead7b"
@@ -4275,7 +4275,7 @@
       "name": "Hạt Nhân Vạn Năng No.1",
       "description": "Vật liệu tăng 1 sao và 2 sao cho Trợ Thủ Tank, hạt nhân tương thích mạnh.",
       "icon": {
-        "url": "/html5/assets/m81314/original/18e5ffc83c9dacbfcc900ab2a03b211c1415a64fee48b344e43a27ef5a068b56.png",
+        "url": "/rez/zh_CN/icon/item/072fea4feb602efa1c81ef5714a4bfb2.png",
         "width": 100,
         "height": 100,
         "sha256": "18e5ffc83c9dacbfcc900ab2a03b211c1415a64fee48b344e43a27ef5a068b56"
@@ -4302,7 +4302,7 @@
       "name": "Máy Lưu Trữ Thông Tin",
       "description": "用于转移小助手星级，强化等级，等级。精密的结构可以保证储存信息的安全。",
       "icon": {
-        "url": "/html5/assets/m81314/original/c55f702ce1752bda9aebb6fedff89b33569a6c1a9957d5f3c3b6c825d1c86a52.png",
+        "url": "/rez/zh_CN/icon/item/506eec6fdb684462209c0f5c199b621b.png",
         "width": 100,
         "height": 100,
         "sha256": "c55f702ce1752bda9aebb6fedff89b33569a6c1a9957d5f3c3b6c825d1c86a52"
@@ -4329,7 +4329,7 @@
       "name": "Nano Đông Lạnh No.10",
       "description": "Khi trợ thủ tăng 19 sao và 20 sao, tỷ lệ tăng sao thành công tăng lên 10%, khi bỏ vào 1 vật phẩm, bỏ vào 2 cái tỷ lệ thành công tăng lên 40%, bỏ vào 3 cái tỷ lệ thành công tăng 90%, dịch đông lạnh kim loại đạt cấp Nano, thúc đẩy dung hợp kim loại, số No.10",
       "icon": {
-        "url": "/html5/assets/m81314/original/aa62766c1c26dc83259d0f08e7e8b51ec5e42a8bad14e8111578a7d265cb6ba7.png",
+        "url": "/rez/zh_CN/icon/item/a08e1dafb5c9aebf1f7ccf5dd926019a.png",
         "width": 100,
         "height": 100,
         "sha256": "aa62766c1c26dc83259d0f08e7e8b51ec5e42a8bad14e8111578a7d265cb6ba7"
@@ -4356,7 +4356,7 @@
       "name": "Nano Đông Lạnh No.9",
       "description": "Khi trợ thủ tăng 17 sao và 18 sao, tỷ lệ tăng sao thành công tăng lên 10%, khi bỏ vào 1 vật phẩm, bỏ vào 2 cái tỷ lệ thành công tăng lên 40%, bỏ vào 3 cái tỷ lệ thành công tăng 90%, dịch đông lạnh kim loại đạt cấp Nano, thúc đẩy dung hợp kim loại, số No.9",
       "icon": {
-        "url": "/html5/assets/m81314/original/cfc337cee9690464801196014c803dd5ce272e6e959050e93778829a8b7ae185.png",
+        "url": "/rez/zh_CN/icon/item/595ee598a347666491f6f2ebabff1d08.png",
         "width": 100,
         "height": 100,
         "sha256": "cfc337cee9690464801196014c803dd5ce272e6e959050e93778829a8b7ae185"
@@ -4383,7 +4383,7 @@
       "name": "Nano Đông Lạnh No.8",
       "description": "Khi trợ thủ tăng 15 sao và 16 sao, tỷ lệ tăng sao thành công tăng lên 10%, khi bỏ vào 1 vật phẩm, bỏ vào 2 cái tỷ lệ thành công tăng lên 40%, bỏ vào 3 cái tỷ lệ thành công tăng 90%, dịch đông lạnh kim loại đạt cấp Nano, thúc đẩy dung hợp kim loại, số No.8",
       "icon": {
-        "url": "/html5/assets/m81314/original/a166fca5f2ba2937b482960d83b202480117cfff44002cb5c921ed0a9093aaf6.png",
+        "url": "/rez/zh_CN/icon/item/047de0e92eaa4ca76c051cc7da64b7ed.png",
         "width": 100,
         "height": 100,
         "sha256": "a166fca5f2ba2937b482960d83b202480117cfff44002cb5c921ed0a9093aaf6"
@@ -4410,7 +4410,7 @@
       "name": "Nano Đông Lạnh No.7",
       "description": "Khi trợ thủ tăng 13 sao và 14 sao, tỷ lệ tăng sao thành công tăng lên 10%, khi bỏ vào 1 vật phẩm, bỏ vào 2 cái tỷ lệ thành công tăng lên 40%, bỏ vào 3 cái tỷ lệ thành công tăng 90%, dịch đông lạnh kim loại đạt cấp Nano, thúc đẩy dung hợp kim loại, số No.7",
       "icon": {
-        "url": "/html5/assets/m81314/original/68c8563a981234809c7d02e5bdd8117e9911d21ebfecb0a5e5986deab845d797.png",
+        "url": "/rez/zh_CN/icon/item/07074dc7e508a529f15fa1e0c0199ee3.png",
         "width": 100,
         "height": 100,
         "sha256": "68c8563a981234809c7d02e5bdd8117e9911d21ebfecb0a5e5986deab845d797"
@@ -4437,7 +4437,7 @@
       "name": "Nano Đông Lạnh No.6",
       "description": "Khi trợ thủ tăng 11 sao và 12 sao, tỷ lệ tăng sao thành công tăng lên 10%, khi bỏ vào 1 vật phẩm, bỏ vào 2 cái tỷ lệ thành công tăng lên 40%, bỏ vào 3 cái tỷ lệ thành công tăng 90%, dịch đông lạnh kim loại đạt cấp Nano, thúc đẩy dung hợp kim loại, số No.6",
       "icon": {
-        "url": "/html5/assets/m81314/original/998860d7a151389e834b160246d66254e2e4fdfd65a8cbf9a109829a5a164d11.png",
+        "url": "/rez/zh_CN/icon/item/9859a8e629d20bd8b6fb422fed5a8f27.png",
         "width": 100,
         "height": 100,
         "sha256": "998860d7a151389e834b160246d66254e2e4fdfd65a8cbf9a109829a5a164d11"
@@ -4464,7 +4464,7 @@
       "name": "Nano Đông Lạnh No.5",
       "description": "Khi trợ thủ tăng 9 sao và 10 sao, tỷ lệ tăng sao thành công tăng lên 10%, khi bỏ vào 1 vật phẩm, bỏ vào 2 cái tỷ lệ thành công tăng lên 40%, bỏ vào 3 cái tỷ lệ thành công tăng 90%, dịch đông lạnh kim loại đạt cấp Nano, thúc đẩy dung hợp kim loại, số No.5",
       "icon": {
-        "url": "/html5/assets/m81314/original/9b02292b3066ce064e3b66bf8e74b3bc937ae05a5b66efca033402161328fd62.png",
+        "url": "/rez/zh_CN/icon/item/3faca8bffd75bafa2dd66e33ed50622f.png",
         "width": 100,
         "height": 100,
         "sha256": "9b02292b3066ce064e3b66bf8e74b3bc937ae05a5b66efca033402161328fd62"
@@ -4491,7 +4491,7 @@
       "name": "Nano Đông Lạnh No.4",
       "description": "Khi trợ thủ tăng 7 sao và 8 sao, tỷ lệ tăng sao thành công tăng lên 10%, khi bỏ vào 1 vật phẩm, bỏ vào 2 cái tỷ lệ thành công tăng lên 40%, bỏ vào 3 cái tỷ lệ thành công tăng 90%, dịch đông lạnh kim loại đạt cấp Nano, thúc đẩy dung hợp kim loại, số No.4",
       "icon": {
-        "url": "/html5/assets/m81314/original/3c4d01d983489359e53f9e218e9a97cdbe26bcc1c830be37c6306bf25359784c.png",
+        "url": "/rez/zh_CN/icon/item/d0eecfa20b32db03b336289ae47396f4.png",
         "width": 100,
         "height": 100,
         "sha256": "3c4d01d983489359e53f9e218e9a97cdbe26bcc1c830be37c6306bf25359784c"
@@ -4518,7 +4518,7 @@
       "name": "Nano Đông Lạnh No.3",
       "description": "Khi trợ thủ tăng 5 sao và 6 sao, tỷ lệ tăng sao thành công tăng lên 10%, khi bỏ vào 1 vật phẩm, bỏ vào 2 cái tỷ lệ thành công tăng lên 40%, bỏ vào 3 cái tỷ lệ thành công tăng 90%, dịch đông lạnh kim loại đạt cấp Nano, thúc đẩy dung hợp kim loại, số No.3",
       "icon": {
-        "url": "/html5/assets/m81314/original/7ca8b2d2f045836f46e68b131b05a32fce25423e376491e9db096fbe3df05006.png",
+        "url": "/rez/zh_CN/icon/item/4f6a349798ff59e0969e1c1c4765fcb2.png",
         "width": 100,
         "height": 100,
         "sha256": "7ca8b2d2f045836f46e68b131b05a32fce25423e376491e9db096fbe3df05006"
@@ -4545,7 +4545,7 @@
       "name": "Nano Đông Lạnh No.2",
       "description": "Khi trợ thủ tăng 3 sao và 4 sao, tỷ lệ tăng sao thành công tăng lên 10%, khi bỏ vào 1 vật phẩm, bỏ vào 2 cái tỷ lệ thành công tăng lên 40%, bỏ vào 3 cái tỷ lệ thành công tăng 90%, dịch đông lạnh kim loại đạt cấp Nano, thúc đẩy dung hợp kim loại, số No.2.",
       "icon": {
-        "url": "/html5/assets/m81314/original/d1da5d0f37194adfb3fb41fd6b9cd22d758c40f3117c51135fc5563fff11b51e.png",
+        "url": "/rez/zh_CN/icon/item/32f0973dfeed68ac7cb75a49270bea48.png",
         "width": 100,
         "height": 100,
         "sha256": "d1da5d0f37194adfb3fb41fd6b9cd22d758c40f3117c51135fc5563fff11b51e"
@@ -4572,7 +4572,7 @@
       "name": "Nano Đông Lạnh No.1",
       "description": "Khi trợ thủ tăng 1 sao và 2 sao, tỷ lệ tăng sao thành công tăng lên 10%, khi bỏ vào 1 vật phẩm, bỏ vào 2 cái tỷ lệ thành công tăng lên 40%, bỏ vào 3 cái tỷ lệ thành công tăng 90%, dịch đông lạnh kim loại đạt cấp Nano, thúc đẩy dung hợp kim loại, số No.1.",
       "icon": {
-        "url": "/html5/assets/m81314/original/11ba0796b9351e7966e7a3eb98b525a7cfbf95f698527d1148e1017723edb5d0.png",
+        "url": "/rez/zh_CN/icon/item/2f1cee9b03d704b3f8ca0d851702c800.png",
         "width": 100,
         "height": 100,
         "sha256": "11ba0796b9351e7966e7a3eb98b525a7cfbf95f698527d1148e1017723edb5d0"
@@ -4599,7 +4599,7 @@
       "name": "Tinh Thể Siêu Năng Lv10",
       "description": "Dùng cường hóa Trợ Thủ từ cấp 91-100, tinh thể từ khoáng vật quý, chứa năng lượng đáng sợ, cường độ năng lượng 10.",
       "icon": {
-        "url": "/html5/assets/m81314/original/8db7154b42a461de3f000cf70ab2c600ae1a1300dbf869e6035b6806e64a5f63.png",
+        "url": "/rez/zh_CN/icon/item/a48fed554b2de97848c4f24a91ace70c.png",
         "width": 100,
         "height": 100,
         "sha256": "8db7154b42a461de3f000cf70ab2c600ae1a1300dbf869e6035b6806e64a5f63"
@@ -4626,7 +4626,7 @@
       "name": "Tinh Thể Siêu Năng Lv9",
       "description": "Dùng cường hóa Trợ Thủ từ cấp 81-90, tinh thể từ khoáng vật quý, chứa năng lượng đáng sợ, cường độ năng lượng 9.",
       "icon": {
-        "url": "/html5/assets/m81314/original/0122f2b83bd4bdbace221d546ce07451ab65a977b92c95ee1e271479306e06c6.png",
+        "url": "/rez/zh_CN/icon/item/2124e5b104bb7061606499843cbe81d4.png",
         "width": 100,
         "height": 100,
         "sha256": "0122f2b83bd4bdbace221d546ce07451ab65a977b92c95ee1e271479306e06c6"
@@ -4653,7 +4653,7 @@
       "name": "Tinh Thể Siêu Năng Lv8",
       "description": "Dùng cường hóa Trợ Thủ từ cấp 71-80, tinh thể từ khoáng vật quý, chứa năng lượng đáng sợ, cường độ năng lượng 8.",
       "icon": {
-        "url": "/html5/assets/m81314/original/c841bd177bd0b702175491ff608898397989ecd3b6e812aee303c6f14ddb1a67.png",
+        "url": "/rez/zh_CN/icon/item/7fb9624e986b1dc17d639f11148e160f.png",
         "width": 100,
         "height": 100,
         "sha256": "c841bd177bd0b702175491ff608898397989ecd3b6e812aee303c6f14ddb1a67"
@@ -4680,7 +4680,7 @@
       "name": "Tinh Thể Siêu Năng Lv7",
       "description": "Dùng cường hóa Trợ Thủ từ cấp 61-70, tinh thể từ khoáng vật quý, chứa năng lượng đáng sợ, cường độ năng lượng 7.",
       "icon": {
-        "url": "/html5/assets/m81314/original/4ed4c996c090f1239f1fe51951ad9a0d3bd165f8e521cd8912c31da7d28e3600.png",
+        "url": "/rez/zh_CN/icon/item/7c3c88a9e0326c8c079e384f82be8a17.png",
         "width": 100,
         "height": 100,
         "sha256": "4ed4c996c090f1239f1fe51951ad9a0d3bd165f8e521cd8912c31da7d28e3600"
@@ -4707,7 +4707,7 @@
       "name": "Tinh Thể Siêu Năng Lv6",
       "description": "Dùng cường hóa Trợ Thủ từ cấp 51-60, tinh thể từ khoáng vật quý, chứa năng lượng đáng sợ, cường độ năng lượng 6.",
       "icon": {
-        "url": "/html5/assets/m81314/original/4c22e6b9e641baaa61dc4f53298a3e58d536a1af0204a32c2ecdf6b042dd249f.png",
+        "url": "/rez/zh_CN/icon/item/5a7ab0ec12b62b6d2af776c984c78c0f.png",
         "width": 100,
         "height": 100,
         "sha256": "4c22e6b9e641baaa61dc4f53298a3e58d536a1af0204a32c2ecdf6b042dd249f"
@@ -4734,7 +4734,7 @@
       "name": "Tinh Thể Siêu Năng Lv5",
       "description": "Dùng cường hóa Trợ Thủ từ cấp 41-50, tinh thể từ khoáng vật quý, chứa năng lượng đáng sợ, cường độ năng lượng 5.",
       "icon": {
-        "url": "/html5/assets/m81314/original/6d84025d5fdace1ae3d76d50a914925abea0d8a79e00fa816f33decb2d712e3b.png",
+        "url": "/rez/zh_CN/icon/item/b7997d9a31af369c6fdbf71dac9644ee.png",
         "width": 100,
         "height": 100,
         "sha256": "6d84025d5fdace1ae3d76d50a914925abea0d8a79e00fa816f33decb2d712e3b"
@@ -4761,7 +4761,7 @@
       "name": "Tinh Thể Siêu Năng Lv4",
       "description": "Dùng cường hóa Trợ Thủ từ cấp 31-40, tinh thể từ khoáng vật quý, chứa năng lượng đáng sợ, cường độ năng lượng 4.",
       "icon": {
-        "url": "/html5/assets/m81314/original/47f099f1007c5dfb65c1bce940e00325a6839aeb3e51e06df894f4fb82ec7de4.png",
+        "url": "/rez/zh_CN/icon/item/186c459048822be581306cc4764f050e.png",
         "width": 100,
         "height": 100,
         "sha256": "47f099f1007c5dfb65c1bce940e00325a6839aeb3e51e06df894f4fb82ec7de4"
@@ -4788,7 +4788,7 @@
       "name": "Tinh Thể Siêu Năng Lv3",
       "description": "Dùng cường hóa Trợ Thủ từ cấp 21-30, tinh thể từ khoáng vật quý, chứa năng lượng đáng sợ, cường độ năng lượng 3.",
       "icon": {
-        "url": "/html5/assets/m81314/original/6056d1207a0eb61149bd21b865c35c79f6ad9e532f22da018d039c2da0277072.png",
+        "url": "/rez/zh_CN/icon/item/b2480466acd59d2e7fd3f6f9119710c2.png",
         "width": 100,
         "height": 100,
         "sha256": "6056d1207a0eb61149bd21b865c35c79f6ad9e532f22da018d039c2da0277072"
@@ -4815,7 +4815,7 @@
       "name": "Tinh Thể Siêu Năng lv2",
       "description": "Dùng cường hóa Trợ Thủ từ cấp 11-20, tinh thể từ khoáng vật quý, chứa năng lượng đáng sợ, cường độ năng lượng 2.",
       "icon": {
-        "url": "/html5/assets/m81314/original/1044b752383b9dccaa11c681b772acee83ca96a009f7f95de56cac87d0606222.png",
+        "url": "/rez/zh_CN/icon/item/0b1788ce52f2f1ff2c783cab0a33a455.png",
         "width": 100,
         "height": 100,
         "sha256": "1044b752383b9dccaa11c681b772acee83ca96a009f7f95de56cac87d0606222"
@@ -4842,7 +4842,7 @@
       "name": "Tinh Thể Siêu Năng lv1",
       "description": "Dùng cường hóa Trợ Thủ từ cấp 1-10, tinh thể từ khoáng vật quý, chứa năng lượng đáng sợ, cường độ năng lượng 1.",
       "icon": {
-        "url": "/html5/assets/m81314/original/dee26186261fe7697a9879047ad99f036c8544856b29b9758c34dc3cce26441f.png",
+        "url": "/rez/zh_CN/icon/item/3ce76be4e5f335e76d56af474b354d5c.png",
         "width": 100,
         "height": 100,
         "sha256": "dee26186261fe7697a9879047ad99f036c8544856b29b9758c34dc3cce26441f"
@@ -4869,7 +4869,7 @@
       "name": "Chip Siêu Dẫn No.8",
       "description": "Trợ thủ +100000 điểm EXP, Chip Siêu Dẫn từ vật liệu quý, để lưu trữ tài liệu cơ mật, đánh số No.8.",
       "icon": {
-        "url": "/html5/assets/m81314/original/85fa3a16c29a2737308193cd5fa8e3ed3cd6a395c5254d01c25c5a79177ba576.png",
+        "url": "/rez/zh_CN/icon/item/1cd79d5c6c15d4fe324a665a72db6c08.png",
         "width": 100,
         "height": 100,
         "sha256": "85fa3a16c29a2737308193cd5fa8e3ed3cd6a395c5254d01c25c5a79177ba576"
@@ -4896,7 +4896,7 @@
       "name": "Chip Siêu Dẫn No.7",
       "description": "Trợ thủ +50000 điểm EXP, Chip Siêu Dẫn từ vật liệu quý, để lưu trữ tài liệu cơ mật, đánh số No.7.",
       "icon": {
-        "url": "/html5/assets/m81314/original/c6f4f6932f080e695a3d3ea97d6acd018c05c9ce36afe505a889b08de4b793f6.png",
+        "url": "/rez/zh_CN/icon/item/60dcf71f066f9b6ac052c89b2e5846ed.png",
         "width": 100,
         "height": 100,
         "sha256": "c6f4f6932f080e695a3d3ea97d6acd018c05c9ce36afe505a889b08de4b793f6"
@@ -4923,7 +4923,7 @@
       "name": "Chip Siêu Dẫn No.6",
       "description": "Trợ thủ +10000 điểm EXP, Chip Siêu Dẫn từ vật liệu quý, để lưu trữ tài liệu cơ mật, đánh số No.6.",
       "icon": {
-        "url": "/html5/assets/m81314/original/7094a552007d30da436590e9db6822d75850f16bbf81214dd5c30b990494780c.png",
+        "url": "/rez/zh_CN/icon/item/07cb9edbec558d8e3a58884327e2e7ba.png",
         "width": 100,
         "height": 100,
         "sha256": "7094a552007d30da436590e9db6822d75850f16bbf81214dd5c30b990494780c"
@@ -4950,7 +4950,7 @@
       "name": "Chip Siêu Dẫn No.5",
       "description": "Trợ thủ +5000 điểm EXP, Chip Siêu Dẫn từ vật liệu quý, để lưu trữ tài liệu cơ mật, đánh số No.5.",
       "icon": {
-        "url": "/html5/assets/m81314/original/ef90b052ace9c51dc1d2722d04bc6a53fe92c4d0c4708bae33c1fae9ffc30483.png",
+        "url": "/rez/zh_CN/icon/item/a64905faec6be744ed401bb50d95b7e0.png",
         "width": 100,
         "height": 100,
         "sha256": "ef90b052ace9c51dc1d2722d04bc6a53fe92c4d0c4708bae33c1fae9ffc30483"
@@ -4977,7 +4977,7 @@
       "name": "Chip Siêu Dẫn No.4",
       "description": "Trợ thủ +1000 điểm EXP, Chip Siêu Dẫn từ vật liệu quý, để lưu trữ tài liệu cơ mật, đánh số No.4.",
       "icon": {
-        "url": "/html5/assets/m81314/original/fb6c781ce45d9d3dc054a68d2ff2e5667b1107d9a6a11230fc6f5c68788634d9.png",
+        "url": "/rez/zh_CN/icon/item/f406835e02a4c9f1886f7b2b8a096656.png",
         "width": 100,
         "height": 100,
         "sha256": "fb6c781ce45d9d3dc054a68d2ff2e5667b1107d9a6a11230fc6f5c68788634d9"
@@ -5004,7 +5004,7 @@
       "name": "Chip Siêu Dẫn No.3",
       "description": "Trợ thủ +500 điểm EXP, Chip Siêu Dẫn từ vật liệu quý, để lưu trữ tài liệu cơ mật, đánh số No.3.",
       "icon": {
-        "url": "/html5/assets/m81314/original/50aebdf65673872a7b146b9228d90df9e2643dde29c36b4d5c3c6084ffa2cf43.png",
+        "url": "/rez/zh_CN/icon/item/0253186052f42d8079451786d51a649b.png",
         "width": 100,
         "height": 100,
         "sha256": "50aebdf65673872a7b146b9228d90df9e2643dde29c36b4d5c3c6084ffa2cf43"
@@ -5031,7 +5031,7 @@
       "name": "Chip Siêu Dẫn No.2",
       "description": "Trợ thủ +100 điểm EXP, Chip Siêu Dẫn từ vật liệu quý, để lưu trữ tài liệu cơ mật, đánh số No.2.",
       "icon": {
-        "url": "/html5/assets/m81314/original/fb7ac9415e8643e8234bc2b658a48843df670d7a44ba6ae4c044d0d5c806328e.png",
+        "url": "/rez/zh_CN/icon/item/b582b47b382cd7dd86c808becc69a3ac.png",
         "width": 100,
         "height": 100,
         "sha256": "fb7ac9415e8643e8234bc2b658a48843df670d7a44ba6ae4c044d0d5c806328e"
@@ -5058,7 +5058,7 @@
       "name": "Chip Siêu Dẫn No.1",
       "description": "Trợ thủ +10 điểm EXP, Chip Siêu Dẫn từ vật liệu quý, để lưu trữ tài liệu cơ mật, đánh số No.1.",
       "icon": {
-        "url": "/html5/assets/m81314/original/ced3ae1746f9509595d4e391562fc409f4004e979b0b3c31396acdc020c302fc.png",
+        "url": "/rez/zh_CN/icon/item/d4f4279fefe59fc6c9e16e14cc1a90b8.png",
         "width": 100,
         "height": 100,
         "sha256": "ced3ae1746f9509595d4e391562fc409f4004e979b0b3c31396acdc020c302fc"
@@ -5080,7 +5080,7 @@
     {
       "goodsId": 998005001,
       "itemId": 2005001,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Chim",
       "description": "Mở 1 trứng: 10% nhận Chim Lửa; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5136,7 +5136,7 @@
     {
       "goodsId": 998005003,
       "itemId": 2005003,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Ác Ma",
       "description": "Mở 1 trứng: 10% nhận Ác Ma Kịch Độc; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5164,7 +5164,7 @@
     {
       "goodsId": 998005004,
       "itemId": 2005004,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Bí Ngô",
       "description": "Mở 1 trứng: 10% nhận Bí Ngô; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5192,7 +5192,7 @@
     {
       "goodsId": 998005005,
       "itemId": 2005005,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Hồn Ma",
       "description": "Mở 1 trứng: 10% nhận Bóng Ma; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5220,7 +5220,7 @@
     {
       "goodsId": 998005006,
       "itemId": 2005006,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Chiến Sĩ Vu Độc",
       "description": "Mở 1 trứng: 10% nhận Chiến Sĩ Vu Độc; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5248,7 +5248,7 @@
     {
       "goodsId": 998005007,
       "itemId": 2005007,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Yoyo",
       "description": "Mở 1 trứng: 10% nhận Yoyo Băng; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5276,7 +5276,7 @@
     {
       "goodsId": 998005008,
       "itemId": 2005008,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Nữ Thần",
       "description": "Mở 1 trứng: 10% nhận Nữ Thần Mặt Trời; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5304,7 +5304,7 @@
     {
       "goodsId": 998005009,
       "itemId": 2005009,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Móng Ác Ma",
       "description": "Mở 1 trứng: 10% nhận Móng Ác Ma Băng; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5332,7 +5332,7 @@
     {
       "goodsId": 998005011,
       "itemId": 2005011,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Siêu Khuyển",
       "description": "Mở 1 trứng: 10% nhận Siêu Khuyển 6; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5360,7 +5360,7 @@
     {
       "goodsId": 998005013,
       "itemId": 2005013,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Ngựa Vàng",
       "description": "Mở 1 trứng: 10% nhận Ngựa Vàng; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5388,7 +5388,7 @@
     {
       "goodsId": 998005014,
       "itemId": 2005014,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Ngựa Tím",
       "description": "Mở 1 trứng: 10% nhận Ngựa Tím; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5416,7 +5416,7 @@
     {
       "goodsId": 998005015,
       "itemId": 2005015,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Ngựa Lửa",
       "description": "Mở 1 trứng: 10% nhận Ngựa Lửa; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5444,7 +5444,7 @@
     {
       "goodsId": 998005018,
       "itemId": 2005018,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Trợ Thủ-Cao",
       "description": "Mở 1 trứng: 10% nhận Ngựa Kim Cương, Ngựa Tím, Ngựa Lửa; 90% nhận một phần nguyên liệu nâng cấp tank. Các thưởng chính có xác suất bằng nhau trong nhánh 10%.",
@@ -5472,7 +5472,7 @@
     {
       "goodsId": 998005019,
       "itemId": 2005019,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Kero Đỏ",
       "description": "Mở 1 trứng: 10% nhận Kero Đỏ; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5500,7 +5500,7 @@
     {
       "goodsId": 998005020,
       "itemId": 2005020,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Kero Tím",
       "description": "Mở 1 trứng: 10% nhận Kero Tím; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5528,7 +5528,7 @@
     {
       "goodsId": 998005021,
       "itemId": 2005021,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Kero Vàng",
       "description": "Mở 1 trứng: 10% nhận Kero Vàng; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5556,7 +5556,7 @@
     {
       "goodsId": 998005022,
       "itemId": 2005022,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Thần Bí",
       "description": "Mở 1 trứng: 10% nhận Móng Vuốt Vàng; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5584,7 +5584,7 @@
     {
       "goodsId": 998005023,
       "itemId": 2005023,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Bích Kỳ Lân",
       "description": "Mở 1 trứng: 10% nhận Bích Kỳ Lân; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5612,7 +5612,7 @@
     {
       "goodsId": 998005024,
       "itemId": 2005024,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Tử Kỳ Lân",
       "description": "Mở 1 trứng: 10% nhận Tử Kỳ Lân; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5640,7 +5640,7 @@
     {
       "goodsId": 998005025,
       "itemId": 2005025,
-      "tab": 6,
+      "tab": 4,
       "grantKind": "item",
       "name": "Trứng Hỏa Kỳ Lân",
       "description": "Mở 1 trứng: 10% nhận Hỏa Kỳ Lân; 90% nhận một phần nguyên liệu nâng cấp tank.",
@@ -5664,6 +5664,1409 @@
       "autoUse": false,
       "available": true,
       "boxId": 2005025
+    },
+    {
+      "goodsId": 902000073,
+      "itemId": 10000073,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Baymax",
+      "description": "Chiến binh hộ vệ công nghệ cao",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/75f9a29f3042fbaa6875a70ad571144c.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "5dcddc6f6b334d56c2f89635d469f85587b49e37f656afb4b238b4bd66be30f7"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 5990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1500000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000077,
+      "itemId": 10000077,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Zoro",
+      "description": "Kiếm sĩ tam kiếm phái",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/65f9214d51d27cce71cdc62cf11dfa72.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "39b0c982c249db1655aa7dd40affdd1f899f1a8b3be2eb40d338747749b03973"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 5990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1500000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000078,
+      "itemId": 10000078,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Mikasa",
+      "description": "Chiến binh quả cảm tốc độ cao",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/93a8e68e0ae3c8be266c282105845907.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "ef8b10b37aaad3156556c076147a887ec7b3bf5702e898c34396bb740bd036cb"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 5990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1500000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000080,
+      "itemId": 10000080,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Doraemon",
+      "description": "Mèo máy với bảo bối thần kỳ",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/8d44ef69253f73156cf0d026a5cb5631.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "26a461657b191fa9a2517c0e9b6c010f28d00801634a56dabd89aa75d482dbff"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000096,
+      "itemId": 10000096,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Kirito",
+      "description": "Hắc kiếm sĩ song kiếm tuyệt kỹ",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/a136cf14f28308fccf3beddb6241ca14.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "b4bc2001d3b1ef3e41be6f90284a2359d9364d492830ff079e15f1ab546fe7ce"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000102,
+      "itemId": 10000102,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Saitama",
+      "description": "Anh hùng một đấm siêu cấp",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/a2269a3b1943709e6785510e147b769c.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "d695d0848b8642b7b2c9b02577266d2176670abbba87e58f68dd293f41f49ef3"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 7990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2500000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000093,
+      "itemId": 10000093,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Sasuke",
+      "description": "Nhẫn thuật lôi độn và Sharingan",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/c81a0d5e6dd94290348c478a8ae2f851.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "69310453f94453d7f0cf53bd5a88e21a41959446cadad18ed1db3bcdc23a9313"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000095,
+      "itemId": 10000095,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Kurumi",
+      "description": "Pháo thủ kiểm soát thời gian",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/f858768e0438ce58610467bc14fb9dd6.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "8fdfed8e28fb410b12c9565e5005d548724a5a40617e30ed52a90f40c13562cc"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000082,
+      "itemId": 10000082,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Na Tra",
+      "description": "Tam thái tử hỏa tiêm thương",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/c37f29f3b950dd44bda5c5e71993233b.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "a34ebe1be5ea2c8514cff51ace41e6ea0d22a3af4ac4dce68970e05691d598a0"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 5990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1500000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000083,
+      "itemId": 10000083,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Doctor Strange",
+      "description": "Phù thủy tối thượng ma thuật đa chiều",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/42b6de3c7a651766ccee385bd5d56c22.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "13716db6b38a9706d2e119a1f0458d783e0e4636382f3ac7c0eefa929e6c166d"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000090,
+      "itemId": 10000090,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Natsu",
+      "description": "Hỏa long ma đạo sĩ",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/daaae980c035e3ad8ba9b5e9bfd48348.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "1f18f81cc6d347d96ba91a7c2b4ce30c4ef2447703a9f7916014ab4b996ab7c4"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 5990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1500000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000051,
+      "itemId": 10000051,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Sơn Tinh",
+      "description": "Chúa tể non cao dời non lấp biển",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/767bbdaf9190ecd485d5a2aa8b42dee5.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "98b20953e4b4d7e9530d483d1919da377c7364a7f0298eda52300a5febe4d5f8"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 4990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1200000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000079,
+      "itemId": 10000079,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Thủy Tinh",
+      "description": "Chúa tể biển sâu dâng nước hô mưa",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/9ffaaf38f54390a3bb31ddccec345acd.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "240a9203b1a69d7cb201c715fd3088464f72efa9af8ad0f788339bc153bc7600"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 4990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1200000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000043,
+      "itemId": 10000043,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Thánh Gióng",
+      "description": "Anh hùng làng Gióng cưỡi ngựa sắt",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/c01accdab817eeab29bd442d2b411be6.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "bdd208fd3ac9a1d0e9a9bb965a8d18dfd12063209353847cf4f01e50e7677b0e"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 5990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1500000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000039,
+      "itemId": 10000039,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Thor",
+      "description": "Thần sấm sét với búa Mjolnir",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/a1649a6f843b057e6811071daa8fb02b.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "fc50f7b2cd4d66a7bf4a0179273da6efefaa0ab4e4175b921b6c1859fbaa253b"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 4990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1200000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000042,
+      "itemId": 10000042,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Songoku",
+      "description": "Siêu Saiyan năng lượng bùng nổ",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/9af9f06f135c3c895010fdfda3f82cd1.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "fd09b8e9f80ec8f0a63b50f996f48b9b3fc557ba45e8a332e379f872ffc0edb9"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000044,
+      "itemId": 10000044,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Naruto",
+      "description": "Hokage đệ thất cửu vĩ hồ ly",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/5ad4565bf3072ebb4788d7cd118304e3.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "1fd33903329fa72f40d288bea630a78afab60d278ed9dde5b3d6a448bf7b37fd"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000046,
+      "itemId": 10000046,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Luffy",
+      "description": "Thuyền trưởng Mũ Rơm cao su",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/a692892a575419d7a49fe2ded83f66f1.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "30a80e865659e5dc9be99b4648714fc533c74a8e709458695a29e813db7f09ca"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 5990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1500000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000047,
+      "itemId": 10000047,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Pikachu",
+      "description": "Chuột điện với sấm sét vạn vôn",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/cfb8becbfa1166dcf485bc4d3c2b0604.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "93339f84663552acce1202e696667ff30810a5e96aaf148428a49e60edd245a1"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 4990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1200000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000048,
+      "itemId": 10000048,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Sát thủ",
+      "description": "Thích khách thoắt ẩn thoắt hiện",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/c3321a91e91b26dfe1cb4cf1cc5833cd.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "ea222755c86b1566332b66f9f516ab2f61ab6105538a437f259461d1adee37d0"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 4990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1200000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000052,
+      "itemId": 10000052,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Bí Ngô Vương",
+      "description": "Vua bí ngô Halloween hắc ám",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/8b6e72ef69f836040cdda6d73ba24158.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "dc709c63088b6bf77966c6116d686f98deb9bd074fc4a2fea49a38a814cd39ff"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000053,
+      "itemId": 10000053,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Superman",
+      "description": "Người đàn ông thép sức mạnh vô song",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/0d1bd48977f9529fc396c7f060cdaeee.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "dc4800c32555385e432dfd4b8e819a90faf28483bca286b8d1222556e40b7541"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000071,
+      "itemId": 10000071,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Joker",
+      "description": "Gã hề điên loạn với bẫy bất ngờ",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/c4be3754ee7d306b37e6fdea928e452a.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "19a76410e45b910f1ac763e22b7986d946f41b6e95adff61bfb626b1d61b98b7"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 5990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 1500000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000075,
+      "itemId": 10000075,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Lữ Bố",
+      "description": "Chiến thần vô song Phương Thiên Họa Kích",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/2792f0f5a387651f66a3c8e927345b0a.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "500907e55f5ea7f96d1f3e1bbe9c2d1bc76d7ad57e89411fcd05e3b8c6579715"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902000081,
+      "itemId": 10000081,
+      "tab": 2,
+      "grantKind": "tank",
+      "name": "Kiếm Thần",
+      "description": "Vô cực kiếm thần sát khí ngút trời",
+      "icon": {
+        "url": "/rez/zh_CN/avatar/micro/5e125b90ce8c6edb3ec1baf0965e2038.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "86fb0c276bdef3de3fe0313258ce26e5497bae9b206f906fb41a70a9ad8e8532"
+      },
+      "containerType": 0,
+      "maxCount": 1,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 6990,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 2000000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 902003072,
+      "itemId": 2003072,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Baymax",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/677a8f3f96ed80675ceb586dba8e38f7.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "c6a700b445021aa913f1621d085bca7e954c2ab9ae412ada44706abdabdab654"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 399,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 79800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003072
+    },
+    {
+      "goodsId": 902003077,
+      "itemId": 2003077,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Zoro",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/fb4be375e7287693a1413609e2afb227.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "1377cfde1a187fc12fe28c6b2f807dd3f03884983d93b21e0a075e77fe0fffce"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 399,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 79800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003077
+    },
+    {
+      "goodsId": 902003078,
+      "itemId": 2003078,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Mikasa",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/e550275b74bb0d6ea1bcd58daca8678f.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "ab16a354ca715f4208b1e2c8727804ab97eba8cbaccbb1219c0c3eb7f6e40b8e"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 399,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 79800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003078
+    },
+    {
+      "goodsId": 902003080,
+      "itemId": 2003080,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Doraemon",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/c45ebfbe397a6e2f985151b7c3977149.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "57bb9da0fefde6e20f476a6d391bd58038a7ebf7a78f7d3463ecbbc6f6eb8b78"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 499,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 99800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003080
+    },
+    {
+      "goodsId": 902003096,
+      "itemId": 2003097,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Kirito",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/be1b7489fe7b658648b9419154daf6e0.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "2121536088644cc6e9a5c8a20818b008870f82d379ba32873cc5e1657d1f8f2b"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 499,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 99800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003096
+    },
+    {
+      "goodsId": 902003520,
+      "itemId": 2003520,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Saitama",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/1ee97dad4e6b6f1240bfa76d52b97b20.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "cc225a25db335d08334def8146db662456fc887b7bfb7964983e7c73ee6a932e"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 499,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 99800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003520
+    },
+    {
+      "goodsId": 902003093,
+      "itemId": 2003093,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Sasuke",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/d6bf96fe7275111f9b92019f1038e441.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "8fba6397fc5247a8e2b32f1c20089d4a047e26b5e8a2752fed3dfe77f58b5bc3"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 499,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 99800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003093
+    },
+    {
+      "goodsId": 902003095,
+      "itemId": 2003095,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Kurumi",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/457e42036624ea6a7aaf93348afc8528.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "ce10d17ad31d23fed000930099cb4191a1651a3604a738402c824f20a1cfce4d"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 499,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 99800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003095
+    },
+    {
+      "goodsId": 902003082,
+      "itemId": 2003082,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Na Tra",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/5234dc9b7f229de3f2ffc6ca586892f3.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "efc036d99bfd7842f50ce80613d094c7313060b5064f123abc5a5f698a39c817"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 399,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 79800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003082
+    },
+    {
+      "goodsId": 902003083,
+      "itemId": 2003083,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Doctor Strange",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/4bd3b3f6d614e33085a57f3ba25e8b64.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "2a649720223177da0097b3a0887b63a63114198cbd44be213876e7509973cddd"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 499,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 99800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003083
+    },
+    {
+      "goodsId": 902710025,
+      "itemId": 2710025,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Sơn Tinh",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/ee1141b63c8127becf943f3980746d51.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "395d26c13aeca2f37bdeb6c21819a776d42482e2a470d9ee85aa2d4084128778"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 399,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 79800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2710025
+    },
+    {
+      "goodsId": 902003079,
+      "itemId": 2003079,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Thủy Tinh",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/4db0a5b83b1d19c3d42873f223b55f6c.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "3b3ea5e7b5d4298cfad2a0a95deab27b1763c3b8668a111357ae63170146b259"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 399,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 79800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2003079
+    },
+    {
+      "goodsId": 902710014,
+      "itemId": 2710014,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Thor",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/1341b8133ae88f85d90b08bed0f6f1d4.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "5b75fa3da87dd3ce07ab46e0f83f0709f23a318f566f67c896a908c883caa047"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 399,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 79800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2710014
+    },
+    {
+      "goodsId": 902710017,
+      "itemId": 2710017,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Songoku",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/e9e3f9e6688e7dc138be09295e3e4287.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "082c8deb221343b351c75cfb2fe5681e10e662214044e880e3465b416957e6db"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 499,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 99800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2710017
+    },
+    {
+      "goodsId": 902710019,
+      "itemId": 2710019,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Naruto",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/ece97bd736542ee69b59252029399c9e.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "00b1c57df0552c2288c818d5b21dfa0de9a25cc1cbcd63306ab086d22deb9eb3"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 499,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 99800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2710019
+    },
+    {
+      "goodsId": 902710020,
+      "itemId": 2710020,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Luffy",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/f3a5fd57c84a3ebbbe09a01821555ba1.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "89c7150534a85f4b7fb7d687e7bc29526604fa6de7fc090919ce862fa6565de3"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 399,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 79800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2710020
+    },
+    {
+      "goodsId": 902710021,
+      "itemId": 2710021,
+      "tab": 4,
+      "grantKind": "item",
+      "name": "Trứng Pikachu",
+      "description": "Mở 1 trứng: 10% nhận Tank vĩnh viễn; 90% nhận một phần nguyên liệu nâng cấp tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/7617cd29e149f8c58e5af2bb2522f78d.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "e7306e3ee1c3894305f841ddd09012358fed82bc599a4c8b84d4603bed4a1632"
+      },
+      "containerType": 2,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 1,
+          "price": 399,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 79800,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true,
+      "boxId": 2710021
     }
   ],
   "boxes": {
@@ -6647,6 +8050,703 @@
         {
           "kind": "item",
           "id": 4431007,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003072": {
+      "itemId": 2003072,
+      "name": "Trứng Baymax",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000073,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003077": {
+      "itemId": 2003077,
+      "name": "Trứng Zoro",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000077,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003078": {
+      "itemId": 2003078,
+      "name": "Trứng Mikasa",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000078,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003080": {
+      "itemId": 2003080,
+      "name": "Trứng Doraemon",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000080,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003520": {
+      "itemId": 2003520,
+      "name": "Trứng Saitama",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000102,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003093": {
+      "itemId": 2003093,
+      "name": "Trứng Sasuke",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000093,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003095": {
+      "itemId": 2003095,
+      "name": "Trứng Kurumi",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000095,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003082": {
+      "itemId": 2003082,
+      "name": "Trứng Na Tra",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000082,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003083": {
+      "itemId": 2003083,
+      "name": "Trứng Doctor Strange",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000083,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2710025": {
+      "itemId": 2710025,
+      "name": "Trứng Sơn Tinh",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000051,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003079": {
+      "itemId": 2003079,
+      "name": "Trứng Thủy Tinh",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000079,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2710014": {
+      "itemId": 2710014,
+      "name": "Trứng Thor",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000039,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2710017": {
+      "itemId": 2710017,
+      "name": "Trứng Songoku",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000042,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2710019": {
+      "itemId": 2710019,
+      "name": "Trứng Naruto",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000044,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2710020": {
+      "itemId": 2710020,
+      "name": "Trứng Luffy",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000046,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2710021": {
+      "itemId": 2710021,
+      "name": "Trứng Pikachu",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000047,
+          "quantity": 1
+        }
+      ],
+      "material_rewards": [
+        {
+          "kind": "item",
+          "id": 3000148,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000147,
+          "quantity": 1
+        },
+        {
+          "kind": "item",
+          "id": 3000052,
+          "quantity": 5
+        },
+        {
+          "kind": "item",
+          "id": 3000001,
+          "quantity": 10
+        }
+      ],
+      "duplicate_policy": "reject_owned_unique_main",
+      "nativeType": 27,
+      "container": 2,
+      "stack_max": 9999,
+      "autoUse": false
+    },
+    "2003097": {
+      "itemId": 2003097,
+      "name": "Trứng Kirito",
+      "mode": "random",
+      "main_percent": 10,
+      "material_percent": 90,
+      "main_rewards": [
+        {
+          "kind": "tank",
+          "id": 10000096,
           "quantity": 1
         }
       ],
@@ -9504,7 +11604,481 @@
       "container": 2,
       "stack_max": 9999,
       "nativeType": 27
+    },
+    "tank:10000073": {
+      "key": "tank:10000073",
+      "kind": "tank",
+      "id": 10000073,
+      "category": "tank",
+      "name": "Baymax",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000077": {
+      "key": "tank:10000077",
+      "kind": "tank",
+      "id": 10000077,
+      "category": "tank",
+      "name": "Zoro",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000078": {
+      "key": "tank:10000078",
+      "kind": "tank",
+      "id": 10000078,
+      "category": "tank",
+      "name": "Mikasa",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000080": {
+      "key": "tank:10000080",
+      "kind": "tank",
+      "id": 10000080,
+      "category": "tank",
+      "name": "Doraemon",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000096": {
+      "key": "tank:10000096",
+      "kind": "tank",
+      "id": 10000096,
+      "category": "tank",
+      "name": "Kirito",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000102": {
+      "key": "tank:10000102",
+      "kind": "tank",
+      "id": 10000102,
+      "category": "tank",
+      "name": "Saitama",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000093": {
+      "key": "tank:10000093",
+      "kind": "tank",
+      "id": 10000093,
+      "category": "tank",
+      "name": "Sasuke",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000095": {
+      "key": "tank:10000095",
+      "kind": "tank",
+      "id": 10000095,
+      "category": "tank",
+      "name": "Kurumi",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000082": {
+      "key": "tank:10000082",
+      "kind": "tank",
+      "id": 10000082,
+      "category": "tank",
+      "name": "Na Tra",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000083": {
+      "key": "tank:10000083",
+      "kind": "tank",
+      "id": 10000083,
+      "category": "tank",
+      "name": "Doctor Strange",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000090": {
+      "key": "tank:10000090",
+      "kind": "tank",
+      "id": 10000090,
+      "category": "tank",
+      "name": "Natsu",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000051": {
+      "key": "tank:10000051",
+      "kind": "tank",
+      "id": 10000051,
+      "category": "tank",
+      "name": "Sơn Tinh",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000079": {
+      "key": "tank:10000079",
+      "kind": "tank",
+      "id": 10000079,
+      "category": "tank",
+      "name": "Thủy Tinh",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000039": {
+      "key": "tank:10000039",
+      "kind": "tank",
+      "id": 10000039,
+      "category": "tank",
+      "name": "Thor",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000042": {
+      "key": "tank:10000042",
+      "kind": "tank",
+      "id": 10000042,
+      "category": "tank",
+      "name": "Songoku",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000044": {
+      "key": "tank:10000044",
+      "kind": "tank",
+      "id": 10000044,
+      "category": "tank",
+      "name": "Naruto",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000046": {
+      "key": "tank:10000046",
+      "kind": "tank",
+      "id": 10000046,
+      "category": "tank",
+      "name": "Luffy",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000047": {
+      "key": "tank:10000047",
+      "kind": "tank",
+      "id": 10000047,
+      "category": "tank",
+      "name": "Pikachu",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000048": {
+      "key": "tank:10000048",
+      "kind": "tank",
+      "id": 10000048,
+      "category": "tank",
+      "name": "Sát thủ",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000053": {
+      "key": "tank:10000053",
+      "kind": "tank",
+      "id": 10000053,
+      "category": "tank",
+      "name": "Superman",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000071": {
+      "key": "tank:10000071",
+      "kind": "tank",
+      "id": 10000071,
+      "category": "tank",
+      "name": "Joker",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000075": {
+      "key": "tank:10000075",
+      "kind": "tank",
+      "id": 10000075,
+      "category": "tank",
+      "name": "Lữ Bố",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "tank:10000081": {
+      "key": "tank:10000081",
+      "kind": "tank",
+      "id": 10000081,
+      "category": "tank",
+      "name": "Kiếm Thần",
+      "max_quantity": 1,
+      "unique": true,
+      "level": 1,
+      "note": "Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp."
+    },
+    "item:2003072": {
+      "key": "item:2003072",
+      "kind": "item",
+      "id": 2003072,
+      "category": "box",
+      "name": "Trứng Baymax",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2003077": {
+      "key": "item:2003077",
+      "kind": "item",
+      "id": 2003077,
+      "category": "box",
+      "name": "Trứng Zoro",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2003078": {
+      "key": "item:2003078",
+      "kind": "item",
+      "id": 2003078,
+      "category": "box",
+      "name": "Trứng Mikasa",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2003080": {
+      "key": "item:2003080",
+      "kind": "item",
+      "id": 2003080,
+      "category": "box",
+      "name": "Trứng Doraemon",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2003520": {
+      "key": "item:2003520",
+      "kind": "item",
+      "id": 2003520,
+      "category": "box",
+      "name": "Trứng Saitama",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2003093": {
+      "key": "item:2003093",
+      "kind": "item",
+      "id": 2003093,
+      "category": "box",
+      "name": "Trứng Sasuke",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2003095": {
+      "key": "item:2003095",
+      "kind": "item",
+      "id": 2003095,
+      "category": "box",
+      "name": "Trứng Kurumi",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2003082": {
+      "key": "item:2003082",
+      "kind": "item",
+      "id": 2003082,
+      "category": "box",
+      "name": "Trứng Na Tra",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2003083": {
+      "key": "item:2003083",
+      "kind": "item",
+      "id": 2003083,
+      "category": "box",
+      "name": "Trứng Doctor Strange",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2710025": {
+      "key": "item:2710025",
+      "kind": "item",
+      "id": 2710025,
+      "category": "box",
+      "name": "Trứng Sơn Tinh",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2003079": {
+      "key": "item:2003079",
+      "kind": "item",
+      "id": 2003079,
+      "category": "box",
+      "name": "Trứng Thủy Tinh",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2710014": {
+      "key": "item:2710014",
+      "kind": "item",
+      "id": 2710014,
+      "category": "box",
+      "name": "Trứng Thor",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2710017": {
+      "key": "item:2710017",
+      "kind": "item",
+      "id": 2710017,
+      "category": "box",
+      "name": "Trứng Songoku",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2710019": {
+      "key": "item:2710019",
+      "kind": "item",
+      "id": 2710019,
+      "category": "box",
+      "name": "Trứng Naruto",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2710020": {
+      "key": "item:2710020",
+      "kind": "item",
+      "id": 2710020,
+      "category": "box",
+      "name": "Trứng Luffy",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2710021": {
+      "key": "item:2710021",
+      "kind": "item",
+      "id": 2710021,
+      "category": "box",
+      "name": "Trứng Pikachu",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
+    },
+    "item:2003097": {
+      "key": "item:2003097",
+      "kind": "item",
+      "id": 2003097,
+      "category": "box",
+      "name": "Trứng Kirito",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 2,
+      "stack_max": 9999,
+      "nativeType": 27
     }
   },
-  "revision": "dc39dc77190e11116b44d482805fe5f9813478c6f0a6ea6210b8ab8127b2001e"
+  "revision": "500cd5b841790ebf5afc45744e7539c5201371e791099bc7a4c18da5d64d555e"
 }
