@@ -107,7 +107,7 @@ def catalog(db):
             continue
         key = 'tank:' + str(ident)
         result[key] = dict(key=key, kind='tank', id=ident, category='tank', name=name,
-                           max_quantity=1, unique=True, level=1,
+                           max_quantity=100, unique=False, level=1,
                            note='Tank vĩnh viễn LV1; không tự trang bị hoặc nâng cấp.')
     for ident, row in items.items():
         kind, cont = _number(row.get('nType')), _number(row.get('nContType'))
@@ -244,17 +244,16 @@ def plan(db, profile_id, rewards, available=None):
             elif reward['kind'] == 'item':
                 _grant_item(containers, reward, capacities)
             else:
-                if reward['id'] in owned:
-                    raise RewardError('already_owned', 'Đã sở hữu tank vĩnh viễn: ' + reward['name'] + '. Không nhân bản hoặc tự đổi thành tiền.', {'key': reward['key']})
-                tank = {field: '' if fmt == 's' else 0 for field, fmt in GARAGE_FIELDS}
-                tank.update(uuid='mail-tank-' + uuid.uuid4().hex, tank_id=reward['id'],
-                            level=1, cont_type=0, own_time=int(time.time()))
-                tank['external_id'] = base_external(tank, db)
-                tank_instance_payload(tank)
-                new_tanks.append((ordinal, tank))
-                garage.append(tank)
-                owned.add(reward['id'])
-                ordinal += 1
+                for _ in range(reward['quantity']):
+                    tank = {field: '' if fmt == 's' else 0 for field, fmt in GARAGE_FIELDS}
+                    tank.update(uuid='mail-tank-' + uuid.uuid4().hex, tank_id=reward['id'],
+                                level=1, cont_type=0, own_time=int(time.time()))
+                    tank['external_id'] = base_external(tank, db)
+                    tank_instance_payload(tank)
+                    new_tanks.append((ordinal, tank))
+                    garage.append(tank)
+                    owned.add(reward['id'])
+                    ordinal += 1
         return dict(rewards=rewards, before=original, containers=containers, wallet=wallet,
                     new_tanks=new_tanks, garage=garage)
 

@@ -164,6 +164,11 @@ def apply_pve_rewards(state: dict, db, won: bool) -> tuple[dict, list[tuple[int,
     iron = 20
     topaz = 20
 
+    arena = (state.get('battle') or {}).get('actions')
+    if arena and hasattr(arena, 'pk') and isinstance(arena.pk.get('stats'), dict) and 1 in arena.pk['stats']:
+        arena.pk['stats'][1][10] = exp
+        arena.pk['stats'][1][11] = silver
+
     cur_level = state.get('level', 1)
     cur_exp = state.get('n_exp', 0)
     new_level, new_exp = calculate_level_progression(cur_level, cur_exp, exp)

@@ -719,9 +719,17 @@ class BattleService:
 
     def _publish_committed(self,match):
         if any(mid==1708 for mid,_ in match.pending):
+            import ranked_matches
+            import match_rewards
+            for ident,state in match.states.items():
+                try:
+                    with storage.for_profile(ident):
+                        with storage.connection(write=True) as db:
+                            match_rewards.apply_pvp_rewards(state, match.arena, db)
+                except Exception as exc:
+                    log.warning('[multiplayer] PvP rewards error for %s: %s', ident, exc)
             from pk_rules import settlement
             match.pending=[packet for packet in match.pending if packet[0]!=1708]+[settlement(match.arena)]
-            import ranked_matches
             from battle_participants import private
             for ident,state in match.states.items():
                 actor=match.arena.actors[match.objects[ident]]

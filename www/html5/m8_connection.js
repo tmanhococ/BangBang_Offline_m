@@ -74,6 +74,7 @@ export class M8Connection extends M4Connection {
     return ok;
   }
   restoreShopPending(){return this.normalShopTransactions.restore();}
+  clearShopPending(){return this.normalShopTransactions.forceClear();}
   prepareShop(intent){return this.normalShopTransactions.prepare(intent);}
   applyShop(preview){return this.normalShopTransactions.apply(preview);}
   reconcileShop(){return this.normalShopTransactions.reconcile();}
