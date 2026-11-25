@@ -93,6 +93,8 @@ export class BattleView {
     this.linkFrames = new Map(); this.linkDiagnostics = []; this.mapNpcDiagnostics = new Map();
     this.drawnResources = new Map();
     this.audio = new NativeBattleAudio(store, () => this.soundSpace());
+    this.musicPreferences = null;
+    this.loadAudioPreferences();
     this.battleMusic = typeof globalThis.Audio === 'function' ? new Audio('/rez/zh_CN/sound/fight_bg.mp3') : null;
     if (this.battleMusic) {
       this.battleMusic.loop = true;
@@ -174,6 +176,7 @@ export class BattleView {
         parsed.musicOn = this.battleMusicEnabled;
         globalThis.localStorage?.setItem('bangbang.html5.audio.v1', JSON.stringify(parsed));
       } catch {}
+      this.loadAudioPreferences();
       this.syncBattleMusic();
     };
     if ($('battle-music')) $('battle-music').onclick = toggleBattleMusic;
@@ -348,6 +351,7 @@ export class BattleView {
       this.audio.stopAll(); this.shake.reset(); this.linkFrames.clear();
       this.drawnResources.clear();
       this.frameTimes = []; this.drawTimes = []; this.frames = 0; this.lastFrameAt = null;
+      this.syncBattleMusic();
     }
     // Freeze the final rendered battlefield behind the native honors. A real
     // resize still renders once at the finished timestamp. S1708 redelivery
@@ -1250,7 +1254,6 @@ export class BattleView {
     $('battle-asset-status').textContent = `${this.surface.backend} · ${assets.loadedImages} ảnh đã tải`
       + (assets.missing.length ? ` · ${assets.missing.length} tài nguyên hoặc cách hiển thị chưa được hỗ trợ trong bản này.` : '');
     $('battle-asset-status').title = assets.missing.slice(0, 20).map(item => `${item.logical}: ${item.reason}`).join('\n');
-    this.syncBattleMusic();
     if (state.result && this.resultSeen !== state.result) this.drawResult(state);
   }
 
@@ -1267,8 +1270,7 @@ export class BattleView {
     this.resultViewport = `${this.width}:${this.height}`;
   }
 
-  syncBattleMusic() {
-    if (!this.battleMusic) return;
+  loadAudioPreferences() {
     let musicOn = true, volume = 50;
     try {
       const raw = globalThis.localStorage?.getItem('bangbang.html5.audio.v1');
@@ -1278,14 +1280,25 @@ export class BattleView {
         if (Number.isFinite(parsed.musicVolume)) volume = Math.max(0, Math.min(100, Math.round(parsed.musicVolume)));
       }
     } catch {}
-    const enabled = musicOn && this.battleMusicEnabled && !this.disposed;
-    this.battleMusic.volume = 0.5 * (volume / 100);
-    if ($('battle-music')) {
-      $('battle-music').textContent = enabled ? 'Tắt nhạc nền' : 'Bật nhạc nền';
+    this.musicPreferences = { musicOn, volume };
+    return this.musicPreferences;
+  }
+
+  syncBattleMusic() {
+    if (!this.battleMusic) return;
+    const prefs = this.musicPreferences || this.loadAudioPreferences();
+    const enabled = prefs.musicOn && this.battleMusicEnabled && !this.disposed;
+    const targetVolume = 0.5 * (prefs.volume / 100);
+    if (Math.abs(this.battleMusic.volume - targetVolume) > 0.01) {
+      this.battleMusic.volume = targetVolume;
+    }
+    const label = enabled ? 'Tắt nhạc nền' : 'Bật nhạc nền';
+    if ($('battle-music') && $('battle-music').textContent !== label) {
+      $('battle-music').textContent = label;
       $('battle-music').setAttribute('aria-pressed', String(enabled));
     }
-    if ($('robo-music')) {
-      $('robo-music').textContent = enabled ? 'Tắt nhạc nền' : 'Bật nhạc nền';
+    if ($('robo-music') && $('robo-music').textContent !== label) {
+      $('robo-music').textContent = label;
     }
     const inScene = this.client?.state?.play?.phase === 'scene' && !this.resultSeen;
     if (inScene && enabled && !document.hidden) {

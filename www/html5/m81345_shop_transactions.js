@@ -58,6 +58,16 @@ export class NormalShopTransactions{
     }catch{return false;}
     this.state({pending:null});return true;
   }
+  forceClear(){
+    const c=this.client,accountId=c.state.accountId;
+    if(accountId){
+      try{
+        globalThis.localStorage.removeItem(pendingKey(accountId));
+      }catch{}
+    }
+    this.state({pending:null});
+    return true;
+  }
   async request(gate,generation,action,operation,values={}){
     const c=this.client,accountId=c.state.accountId,request=crypto.randomUUID();
     const packet=await c.request(gate,encodeShopRequest(action,request,operation,values),packet=>

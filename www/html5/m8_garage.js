@@ -20,6 +20,28 @@ const STATS = [['iHp', 'HP'], ['iAttack', 'Công vật lý'], ['iEgAtk', 'Công 
 const levelKey = (tank) => `${tank.tankId}:${tank.level}`;
 const strengthKey = (tank, strength = tank.strengthenLevel) => `${tank.tankId}:${tank.level}:${strength}`;
 
+export const MATERIAL_CONVERSIONS = {
+  3000001: { recipeId: 58, sourceId: 3000001, sourceName: 'Mảnh Sắt', targetId: 3000003, targetName: 'Thép', fee: 50 },
+  3000003: { recipeId: 59, sourceId: 3000003, sourceName: 'Thép', targetId: 3000004, targetName: 'Carbon', fee: 100 },
+  3000004: { recipeId: 60, sourceId: 3000004, sourceName: 'Carbon', targetId: 3000005, targetName: 'Hợp kim nhôm', fee: 200 },
+  3000005: { recipeId: 61, sourceId: 3000005, sourceName: 'Hợp kim nhôm', targetId: 3000006, targetName: 'Thép vonfram', fee: 400 },
+  3000051: { recipeId: 62, sourceId: 3000051, sourceName: 'Topaz', targetId: 3000052, targetName: 'Hồng ngọc', fee: 50 },
+  3000052: { recipeId: 63, sourceId: 3000052, sourceName: 'Hồng ngọc', targetId: 3000053, targetName: 'Lục ngọc', fee: 100 },
+  3000053: { recipeId: 64, sourceId: 3000053, sourceName: 'Lục ngọc', targetId: 3000054, targetName: 'Tử bảo', fee: 200 },
+  3000054: { recipeId: 65, sourceId: 3000054, sourceName: 'Tử bảo', targetId: 3000055, targetName: 'Lam bảo', fee: 400 }
+};
+
+export const REVERSE_CONVERSIONS = {
+  3000003: MATERIAL_CONVERSIONS[3000001],
+  3000004: MATERIAL_CONVERSIONS[3000003],
+  3000005: MATERIAL_CONVERSIONS[3000004],
+  3000006: MATERIAL_CONVERSIONS[3000005],
+  3000052: MATERIAL_CONVERSIONS[3000051],
+  3000053: MATERIAL_CONVERSIONS[3000052],
+  3000054: MATERIAL_CONVERSIONS[3000053],
+  3000055: MATERIAL_CONVERSIONS[3000054]
+};
+
 // Skins change native names/icons only; current server keeps base mechanics.
 export function garageSkillDisplay(catalog,tank) {
   const ids=catalog.tanks?.[tank.tankId]?.skills||{},overrides=catalog.skinAttributes?.[tank.externalId]?.skills||{};
@@ -130,13 +152,14 @@ function retainArtwork(parent, next, records, animations) {
 }
 
 export class M8Garage {
-  constructor({ host, client, catalog, assets, run, onClose, onLevelUp=()=>{} }) {
+  constructor({ host, client, catalog, assets, run, onClose, onLevelUp=()=>{}, onShop=null }) {
     this.host = host; this.client = client; this.catalog = catalog; this.assets = assets;
     this.run = run || ((task) => task());
     this.onClose=onClose||(()=>{});
     this.onLevelUp=onLevelUp;
+    this.onShop=onShop||null;
     this.selectedUuid = null; this.group = 'all'; this.page = 0;
-    this.pending = false; this.status = ''; this.dialog = null; this.portraits = new Map(); this.disposed = false;
+    this.pending = false; this.status = ''; this.dialog = null; this.materialModal = null; this.portraits = new Map(); this.disposed = false;
     this.tooltipCleanups = [];
     this.epoch=0;this.connectionGeneration=client.generation;this.levelEffect=null;
     prepareTankLevelEffect().catch(()=>{});
@@ -470,9 +493,9 @@ export class M8Garage {
     placeImage('upgrade.grayShadow', 10, 345);
     placeImage('upgrade.itemTitle', 260, 340);
     dialog.append(positioned(this.nativeButton('public.close', 'Đóng cửa sổ nâng cấp',
-      () => { if (!this.pending) { this.dialog = null; this.render(); } },
+      () => { if (!this.pending) { this.dialog = null; this.materialModal = null; this.render(); } },
       { disabled: this.pending, testId: 'garage-upgrade-close' }), 589, 15));
-    overlay.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !this.pending) { this.dialog = null; this.render(); } });
+    overlay.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !this.pending) { this.dialog = null; this.materialModal = null; this.render(); } });
     overlay.append(dialog); stage.append(overlay);
     if (!['strengthen', 'advance'].includes(progress.kind)) {
       placeImage('upgrade.maxLevel', 246, 395);
@@ -550,10 +573,22 @@ export class M8Garage {
       const x = startX + index * 100;
       dialog.append(renderNativeMaterialCard({assets:this.assets,definition,cost,x,onInspect:()=>{
         this.status=`${nativeText(definition?.name||`Vật phẩm ${cost.itemId}`)}: ${cost.owned}/${cost.count}. ${nativeText(definition?.description||'')}`;
+        this.materialModal = { itemId: cost.itemId };
         this.render();
       }}));
     });
-    if(progress.costs.length<3)placeImage('upgrade.wayTip',451,371);
+    if(progress.costs.length<3) {
+      const wayTipBtn = actionButton('', () => {
+        const shortCost = progress.costs.find(c => c.owned < c.count) || progress.costs[0];
+        if (shortCost) {
+          this.materialModal = { itemId: shortCost.itemId };
+          this.render();
+        }
+      }, { title: 'Nhấp để hợp thành nguyên liệu', testId: 'garage-way-tip' });
+      wayTipBtn.append(this.image('upgrade.wayTip'));
+      Object.assign(wayTipBtn.style, { padding: '0', border: '0', background: 'transparent', cursor: 'pointer', zIndex: '25' });
+      dialog.append(positioned(wayTipBtn, 451, 371, 143, 36));
+    }
     const message = this.status || (!progress.affordable ? 'Chưa đủ nguyên liệu.' : '');
     const status = textBlock(message, 25, 315, 580, { fontSize: '11px', textAlign: 'center',color:'#fff',lineHeight:'14px' });
     status.classList.add('m85-upgrade-status');
@@ -577,6 +612,138 @@ export class M8Garage {
       { disabled, testId: 'garage-upgrade-confirm' });
     submit.append(positioned(this.image(disabled ? 'upgrade.upIconDisabled' : 'upgrade.upIcon'), 27, 6, 66, 23));
     dialog.append(positioned(submit, 254, 469, 120, 35));
+    this.renderMaterialModal(dialog, tank, progress);
+  }
+
+  renderMaterialModal(dialog, tank, progress) {
+    if (!this.materialModal) return;
+    const itemId = this.materialModal.itemId;
+    const recipes = [];
+    if (REVERSE_CONVERSIONS[itemId]) {
+      recipes.push({ mode: 'craft', ...REVERSE_CONVERSIONS[itemId] });
+    }
+    if (MATERIAL_CONVERSIONS[itemId] && !recipes.some(r => r.recipeId === MATERIAL_CONVERSIONS[itemId].recipeId)) {
+      recipes.push({ mode: 'upgrade', ...MATERIAL_CONVERSIONS[itemId] });
+    }
+    const modal = positioned(element('div', null, 'm8-material-convert-modal'), 65, 80, 500, 360);
+    Object.assign(modal.style, {
+      background: 'rgba(5, 20, 45, 0.96)',
+      border: '2px solid #2874a6',
+      borderRadius: '8px',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.8)',
+      zIndex: '50',
+      padding: '16px 20px',
+      color: '#fff',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '10px',
+      maxHeight: '380px',
+      overflowY: 'auto'
+    });
+    modal.dataset.testid = 'garage-material-convert-modal';
+
+    const header = element('div', null, 'm8-modal-header');
+    Object.assign(header.style, { display: 'flex', justifyContent: 'space-between', alignItems: 'center' });
+    const heading = element('h3', 'HỢP THÀNH NGUYÊN LIỆU');
+    Object.assign(heading.style, { margin: '0', fontSize: '16px', color: '#fdf83a', fontWeight: '700' });
+    const closeBtn = actionButton('✕', () => { this.materialModal = null; this.render(); },
+      { testId: 'material-convert-modal-close' });
+    Object.assign(closeBtn.style, {
+      background: 'transparent', border: 'none', color: '#fff', fontSize: '18px', cursor: 'pointer', padding: '0 4px'
+    });
+    header.append(heading, closeBtn);
+    modal.append(header);
+
+    if (recipes.length === 0) {
+      const emptyNote = element('div', 'Nguyên liệu này nhận từ Cửa Hàng, giải so tài hoặc tham gia phó bản/đấu trường.');
+      Object.assign(emptyNote.style, { margin: '20px 0', fontSize: '13px', color: '#ccc', textAlign: 'center' });
+      const shopBtn = actionButton('Đến Cửa Hàng để mua', () => {
+        this.dialog = null; this.materialModal = null;
+        if (this.onShop) this.onShop();
+        else this.onClose();
+      }, { testId: 'material-convert-to-shop' });
+      Object.assign(shopBtn.style, {
+        padding: '8px 18px', background: '#2874a6', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: '700', alignSelf: 'center'
+      });
+      modal.append(emptyNote, shopBtn);
+    } else {
+      const silver = Number(this.snapshot.meta?.character?.currency?.golden || 0);
+      recipes.forEach((r) => {
+        const sourceCount = inventoryCount(this.snapshot.meta, r.sourceId);
+        const targetCount = inventoryCount(this.snapshot.meta, r.targetId);
+        const maxCraft = Math.floor(sourceCount / 5);
+        const affordSilver = r.fee > 0 ? Math.floor(silver / r.fee) : maxCraft;
+        const actualMax = Math.min(maxCraft, affordSilver);
+
+        const card = element('div', null, 'm8-convert-recipe-card');
+        Object.assign(card.style, {
+          background: 'rgba(255,255,255,0.06)',
+          border: '1px solid rgba(40,116,166,0.6)',
+          borderRadius: '6px',
+          padding: '10px 14px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '6px'
+        });
+
+        const rTitle = element('div', `${r.mode === 'craft' ? 'Chế tạo' : 'Hợp thành'} ${r.targetName}`);
+        Object.assign(rTitle.style, { fontWeight: '700', fontSize: '13px', color: '#defc76' });
+
+        const formula = element('div', `Công thức: 5 ${r.sourceName} + ${numberText(r.fee)} Bạc ➔ 1 ${r.targetName}`);
+        Object.assign(formula.style, { fontSize: '12px', color: '#ccc' });
+
+        const stock = element('div', `Hiện có: ${r.sourceName} (${numberText(sourceCount)}) · ${r.targetName} (${numberText(targetCount)}) · Bạc (${numberText(silver)})`);
+        Object.assign(stock.style, { fontSize: '11px', color: '#90caf9' });
+
+        const actions = element('div', null, 'm8-convert-actions');
+        Object.assign(actions.style, { display: 'flex', gap: '8px', marginTop: '4px' });
+
+        const makeBtn = (text, count, testId) => {
+          const btn = actionButton(text, () => {
+            this.perform(() => this.client.convertMaterial(r.recipeId, count),
+              `Đã hợp thành ${count} ${r.targetName}.`);
+          }, { testId });
+          Object.assign(btn.style, {
+            padding: '5px 12px',
+            fontSize: '12px',
+            fontWeight: '700',
+            background: actualMax >= count && this.canMutate() ? '#2874a6' : '#555',
+            color: actualMax >= count && this.canMutate() ? '#fff' : '#aaa',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: actualMax >= count && this.canMutate() ? 'pointer' : 'not-allowed'
+          });
+          btn.disabled = actualMax < count || !this.canMutate();
+          return btn;
+        };
+
+        actions.append(
+          makeBtn('Hợp thành 1', 1, `garage-convert-1-${r.recipeId}`),
+          makeBtn('Hợp thành 5', 5, `garage-convert-5-${r.recipeId}`)
+        );
+        if (actualMax > 1 && actualMax !== 5) {
+          actions.append(makeBtn(`Tất cả (${actualMax})`, actualMax, `garage-convert-all-${r.recipeId}`));
+        }
+
+        card.append(rTitle, formula, stock, actions);
+        modal.append(card);
+      });
+
+      const shopRow = element('div', null, 'm8-convert-shop-row');
+      Object.assign(shopRow.style, { display: 'flex', justifyContent: 'center', marginTop: '6px' });
+      const shopBtn = actionButton('Mua nguyên liệu tại Cửa Hàng', () => {
+        this.dialog = null; this.materialModal = null;
+        if (this.onShop) this.onShop();
+        else this.onClose();
+      }, { testId: 'material-convert-shop-btn' });
+      Object.assign(shopBtn.style, {
+        padding: '5px 14px', background: 'transparent', color: '#90caf9', border: '1px solid #2874a6', borderRadius: '4px', cursor: 'pointer', fontSize: '11px'
+      });
+      shopRow.append(shopBtn);
+      modal.append(shopRow);
+    }
+
+    dialog.append(modal);
   }
 
   renderSkinDialog(stage, tank) {

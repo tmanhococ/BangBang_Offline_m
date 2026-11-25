@@ -222,9 +222,16 @@ def finish(arena, now, won=False):
 def settlement(arena):
     pk = arena.pk; actor = arena.player; won = pk['winner'] == 1
     stats = pk['stats'][1]
-    row = struct.pack('<IIH21i4hi7B4H5B', actor.info['acct_id'], actor.info['tank_id'], 21, *stats,
-                      0, 0, 0, 0, 0, 0, int(won), 0, 0, actor.info['tank_level'], 1, 1,
-                      0, 0, 0, 0, *evaluation(arena))
+    exp_val = stats[10] if stats[10] > 0 else (350 if won else 0)
+    silver_val = stats[11] if stats[11] > 0 else (100000 if won else 0)
+    exp_bytes = struct.pack('<Hii', 1, 0, exp_val) if exp_val > 0 else b'\x00\x00'
+    coins_bytes = struct.pack('<Hii', 1, 0, silver_val) if silver_val > 0 else b'\x00\x00'
+    tank_exp_bytes = b'\x00\x00'
+    items_bytes = struct.pack('<HIiBiIiBi', 2, 3000001, 20, 1, 0, 3000051, 20, 1, 0) if won else b'\x00\x00'
+    pve_bytes = struct.pack('<5B', *evaluation(arena))
+    base_part = struct.pack('<IIH21i4hi7B', actor.info['acct_id'], actor.info['tank_id'], 21, *stats,
+                      0, 0, 0, 0, 0, 0, int(won), 0, 0, actor.info['tank_level'], 1, 1)
+    row = base_part + exp_bytes + coins_bytes + tank_exp_bytes + items_bytes + pve_bytes
     uid = arena.state['battle']['pve_run'].encode()
     header = struct.pack('<IIIBBBhhH', arena.scene_id, arena.geometry.id, pk['elapsed'], 4, pk['winner'], 1,
                          pk['pve']['lives'], 0, 1)

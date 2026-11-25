@@ -41,8 +41,6 @@ STORE = Store()
 
 
 class Handler(SimpleHTTPRequestHandler):
-    protocol_version = "HTTP/1.1"
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(WWW), **kwargs)
 
@@ -55,6 +53,8 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_header('Referrer-Policy', 'no-referrer')
             self.send_header('X-Frame-Options', 'DENY')
             self.send_header('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'none'; form-action 'self'")
+        elif path.endswith(('.html', '.js', '.json', '.css')) or path in ('', '/'):
+            self.send_header('Cache-Control', 'no-cache, must-revalidate')
         super().end_headers()
 
     def do_HEAD(self) -> None:

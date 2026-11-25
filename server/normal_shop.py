@@ -209,7 +209,8 @@ def _available(db, source):
             result[key] = row
         elif key in current:
             runtime = current[key]
-            if any(row.get(field) != runtime.get(field) for field in ('kind', 'id', 'category', 'unique', 'level', 'container', 'stack_max')):
+            fields = ('kind', 'id', 'category', 'level', 'container', 'stack_max') if runtime.get('kind') == 'tank' else ('kind', 'id', 'category', 'unique', 'level', 'container', 'stack_max')
+            if any(row.get(field) != runtime.get(field) for field in fields):
                 raise RewardError('catalog_mismatch', 'Mặt hàng không khớp cơ chế hiện tại; chưa thay đổi gì.', {'key': key})
             result[key] = runtime
     return result

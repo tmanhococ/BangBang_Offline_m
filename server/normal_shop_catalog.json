@@ -48,6 +48,12 @@
           "coinType": 3,
           "price": 100,
           "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 100000,
+          "quantity": 1
         }
       ],
       "canUseGift": true,
@@ -7067,6 +7073,204 @@
       "autoUse": false,
       "available": true,
       "boxId": 2710021
+    },
+    {
+      "goodsId": 998005126,
+      "itemId": 3000001,
+      "tab": 5,
+      "grantKind": "item",
+      "name": "Mảnh Sắt",
+      "description": "Nguyên liệu cường hóa và nâng cấp xe tank cơ bản.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/1a5e1cc83e921dc56b7625cd5a5cfb52.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "c03d5fab77bbfdd10a027cc77351fe7d414812a90b88590bb6351113c075152a"
+      },
+      "containerType": 3,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 3,
+          "price": 5,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 500,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 998005127,
+      "itemId": 3000051,
+      "tab": 5,
+      "grantKind": "item",
+      "name": "Topaz",
+      "description": "Đá quý vàng dùng để cường hóa và nâng cấp xe tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/d9f4b278ee82a3dcb681e050043c1cf2.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "0f05a6aba1b9b2ed500f62299b114694b7a7c2eb1b1eee59870f7bc40befe884"
+      },
+      "containerType": 3,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 3,
+          "price": 5,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 500,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 998005128,
+      "itemId": 3000148,
+      "tab": 5,
+      "grantKind": "item",
+      "name": "Thạch anh mặt trời",
+      "description": "Dùng để nâng cấp các tank cao cấp - Rớt trong giải so tài - xếp hạng Hoặc mua trong SHOP",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/e09749aa8ffd05cca3c7d8a9b11e89db.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "12fa91ba649445d3a18d975031926c64d6bf5bc62c8f2af192ee21db10fb3924"
+      },
+      "containerType": 3,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 3,
+          "price": 100,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 100000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 998005129,
+      "itemId": 3000147,
+      "tab": 5,
+      "grantKind": "item",
+      "name": "Thủy Tinh Moonlight",
+      "description": "Dùng để nâng cấp 7 tank cơ bản - Rớt trong giải so tài - xếp hạng Hoặc mua trong SHOP",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/31a122db9b3cdf9033e5193c064fa6af.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "1ebc5d3bfade8cfef1858476738f4fa6a496e4b49274d7f1fe15ba34abe53a75"
+      },
+      "containerType": 3,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 3,
+          "price": 100,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 100000,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 998005130,
+      "itemId": 3000001,
+      "tab": 1,
+      "grantKind": "item",
+      "name": "Mảnh Sắt",
+      "description": "Nguyên liệu cường hóa và nâng cấp xe tank cơ bản.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/1a5e1cc83e921dc56b7625cd5a5cfb52.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "c03d5fab77bbfdd10a027cc77351fe7d414812a90b88590bb6351113c075152a"
+      },
+      "containerType": 3,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 3,
+          "price": 5,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 500,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
+    },
+    {
+      "goodsId": 998005131,
+      "itemId": 3000051,
+      "tab": 1,
+      "grantKind": "item",
+      "name": "Topaz",
+      "description": "Đá quý vàng dùng để cường hóa và nâng cấp xe tank.",
+      "icon": {
+        "url": "/rez/zh_CN/icon/item/d9f4b278ee82a3dcb681e050043c1cf2.png",
+        "width": 100,
+        "height": 100,
+        "sha256": "0f05a6aba1b9b2ed500f62299b114694b7a7c2eb1b1eee59870f7bc40befe884"
+      },
+      "containerType": 3,
+      "maxCount": 99,
+      "payments": [
+        {
+          "key": "primary",
+          "coinType": 3,
+          "price": 5,
+          "quantity": 1
+        },
+        {
+          "key": "alternate",
+          "coinType": 2,
+          "price": 500,
+          "quantity": 1
+        }
+      ],
+      "canUseGift": true,
+      "autoUse": false,
+      "available": true
     }
   ],
   "boxes": {
@@ -12078,7 +12282,19 @@
       "container": 2,
       "stack_max": 9999,
       "nativeType": 27
+    },
+    "item:3000051": {
+      "key": "item:3000051",
+      "kind": "item",
+      "id": 3000051,
+      "category": "material",
+      "name": "Topaz",
+      "max_quantity": 1000000,
+      "unique": false,
+      "level": 0,
+      "container": 3,
+      "stack_max": 9999
     }
   },
-  "revision": "500cd5b841790ebf5afc45744e7539c5201371e791099bc7a4c18da5d64d555e"
+  "revision": "cc5720f8525156ab286e4667cc8b66f2685d5693658fb6439a08547810f0533a"
 }

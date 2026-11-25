@@ -197,7 +197,9 @@ export class M8UI {
         if(this.screenToken!==token)return;
         const Constructor=screen==='garage'?module.M8Garage:module.M8Crystals;
         this.controller=new Constructor({host:this.content,client:this.client,
-          catalog:screen==='garage'?this.assets.garage:this.assets.crystals,assets:this.assets,run:this.run,onClose:()=>this.navigate('lobby'),onLevelUp:()=>this.menuAudio.effect('levelUp'),onStageSize:size=>{this.dialogStage=size;this.resize();}});
+          catalog:screen==='garage'?this.assets.garage:this.assets.crystals,assets:this.assets,run:this.run,onClose:()=>this.navigate('lobby'),
+          onShop:()=>{this.shopType='normal:5';this.navigate('shop');},
+          onLevelUp:()=>this.menuAudio.effect('levelUp'),onStageSize:size=>{this.dialogStage=size;this.resize();}});
       } else if(screen==='companions'||screen==='pve'){
         const Constructor=screen==='pve'?M81314Pve:(await import('./m81314_companions.js')).M81314Companions;
         if(this.screenToken!==token)return;

@@ -26,11 +26,9 @@ def require_usable_main(box, containers, garage, available):
     if box['mode'] != 'random':
         return
     for reward in mail_rewards.normalize(box['main_rewards'], available):
-        if not reward['unique']:
+        if not reward['unique'] or reward['kind'] == 'tank':
             continue
-        if reward['kind'] == 'tank':
-            owned = any(row['tank_id'] == reward['id'] and int(row.get('cont_type', 0)) == 0 for row in garage)
-        elif reward['kind'] == 'item':
+        if reward['kind'] == 'item':
             owned = any(row['template_id'] == reward['id'] and row['count'] > 0 and not row.get('life_time')
                         for row in containers.get(str(reward['container']), []))
         else:
@@ -128,14 +126,12 @@ def draw_bulk(db, box, ref, available, quantity):
             chosen_rewards = None
             if is_main and box.get('main_rewards'):
                 candidate = box['main_rewards'][0]
-                if candidate['kind'] == 'tank':
-                    owned = any(int(row.get('tank_id', 0)) == candidate['id'] and int(row.get('cont_type', 0)) == 0 for row in garage)
-                elif candidate['kind'] == 'item':
+                if candidate['kind'] == 'item':
                     owned = any(int(row.get('template_id', 0)) == candidate['id'] and row.get('count', 0) > 0 and not row.get('life_time')
                                 for row in containers.get(str(candidate['container']), []))
                 else:
                     owned = False
-                if not owned:
+                if not owned or candidate['kind'] == 'tank':
                     chosen_rewards = [deepcopy(candidate)]
                     outcomes_list.append('main')
                     if candidate['kind'] == 'tank':

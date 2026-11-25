@@ -41,6 +41,7 @@ class DummyArena:
             'end': 60000,
             'finished': True,
             'winner': winner_camp,
+            'scores': {1: 10, 2: 5},
             'stats': {
                 player_actor_id: [0] * 21,
                 2: [0] * 21
@@ -135,6 +136,24 @@ class TestMatchRewardsAndLevel(unittest.TestCase):
                 self.assertEqual(topaz_item['count'], reward_info['topaz'])
 
                 # Check packets include wallet 1039
+                self.assertTrue(any(mid == 1039 for mid, _ in packets))
+
+                # Test that settlement packet 1708 encodes exp, coins, and items
+                from pk_rules import settlement
+                mid, body = settlement(arena)
+                self.assertEqual(mid, 1708)
+                self.assertGreater(len(body), 50)
+
+    def test_apply_pve_rewards(self):
+        with storage.for_profile(self.profile_id):
+            with storage.connection(write=True) as db:
+                self.state['level'] = 1
+                self.state['n_exp'] = 0
+                reward_info, packets = match_rewards.apply_pve_rewards(self.state, db, won=True)
+                self.assertEqual(reward_info['exp'], 350)
+                # Level 1 + 350 exp -> Level 2 with 0 exp
+                self.assertEqual(self.state['level'], 2)
+                self.assertEqual(self.state['n_exp'], 0)
                 self.assertTrue(any(mid == 1039 for mid, _ in packets))
 
     def test_login_payload_1016_packs_level_and_exp(self):

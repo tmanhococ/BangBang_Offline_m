@@ -172,10 +172,22 @@ def settlement(arena):
     for ident,stats in pk['stats'].items():
         a=arena.actors[ident]
         rank=(arena.state.get('battle') or {}).get('rank_result',{}).get(str(a.info['acct_id']),{})
-        rows.append(struct.pack('<IIH21i4hi7B4H5B',a.info['acct_id'],a.info['tank_id'],21,*stats,
-            0,rank.get('old',0),rank.get('new',0),0,0,0,int(winner==a.camp),int(not a.info.get('human',ident==1)),rank.get('section',0),a.info['tank_level'],
-            sum(v.camp==a.camp and not v.info.get('npc_template') for v in arena.actors.values()),a.camp,
-            0,0,0,0,0,0,0,0,0))
+        is_human = a.info.get('human', ident == 1)
+        exp_val = stats[10]
+        silver_val = stats[11]
+        exp_bytes = struct.pack('<Hii', 1, 0, exp_val) if is_human and exp_val > 0 else b'\x00\x00'
+        coins_bytes = struct.pack('<Hii', 1, 0, silver_val) if is_human and silver_val > 0 else b'\x00\x00'
+        tank_exp_bytes = b'\x00\x00'
+        iron_amt = 25 if winner == a.camp else 15
+        topaz_amt = 25 if winner == a.camp else 15
+        items_bytes = struct.pack('<HIiBiIiBi', 2, 3000001, iron_amt, 1, 0, 3000051, topaz_amt, 1, 0) if is_human and exp_val > 0 else b'\x00\x00'
+        pve_bytes = bytes(5)
+
+        base_part = struct.pack('<IIH21i4hi7B', a.info['acct_id'], a.info['tank_id'], 21, *stats,
+            0, rank.get('old',0), rank.get('new',0), 0, 0,
+            0, int(winner==a.camp), int(not is_human), rank.get('section',0), a.info['tank_level'],
+            sum(v.camp==a.camp and not v.info.get('npc_template') for v in arena.actors.values()), a.camp)
+        rows.append(base_part + exp_bytes + coins_bytes + tank_exp_bytes + items_bytes + pve_bytes)
     uid=((arena.state.get('battle') or {}).get('match_uuid') or f'local-pk-{arena.scene_id}').encode()
     header=struct.pack('<IIIBBBhhH',arena.scene_id,arena.geometry.id,pk.get('elapsed',(pk['end']-pk['begin'])//1000),9 if (arena.state.get('room') or {}).get('ranked') else 2,winner,
                        4 if not winner else 1,pk['scores'][1],pk['scores'][2],len(rows))

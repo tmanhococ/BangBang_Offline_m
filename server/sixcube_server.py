@@ -627,15 +627,20 @@ def _client_handler(conn: socket.socket, addr) -> None:
                      (mid==1572 and len(body)>=26 and body[4]==1
                       and struct.unpack_from('<I',body,22)[0]==arena.player.id)]
         if arena and arena.geometry.id not in PVE_MAPS and any(mid==1708 for mid,_ in packets):
-            import match_rewards
-            try:
-                world_db.execute('BEGIN IMMEDIATE')
-                _, reward_pkts = match_rewards.apply_pvp_rewards(session_state, arena, world_db)
-                world_db.commit()
-            except Exception as exc:
-                world_db.rollback()
-                log.warning('[sixcube] PvP rewards delivery error: %s', exc)
-                reward_pkts = []
+            battle = session_state.get('battle')
+            reward_pkts = []
+            if battle and not battle.get('rewards_applied'):
+                import match_rewards
+                try:
+                    if not world_db.in_transaction:
+                        world_db.execute('BEGIN IMMEDIATE')
+                    _, reward_pkts = match_rewards.apply_pvp_rewards(session_state, arena, world_db)
+                    world_db.commit()
+                    battle['rewards_applied'] = True
+                except Exception as exc:
+                    world_db.rollback()
+                    log.warning('[sixcube] PvP rewards delivery error: %s', exc)
+                    reward_pkts = []
             from pk_rules import settlement
             packets=[settlement(arena) if mid==1708 else (mid,body) for mid,body in packets]
             packets+=reward_pkts
@@ -1791,6 +1796,17 @@ def _client_handler(conn: socket.socket, addr) -> None:
                             finish(actions,actions.clock())
                             actions.pk['winner']=3-actions.player.camp
                             battle['forfeit']=True
+                        if actions and actions.pk and not solo_pve and not battle.get('rewards_applied'):
+                            import match_rewards
+                            try:
+                                if not world_db.in_transaction:
+                                    world_db.execute('BEGIN IMMEDIATE')
+                                match_rewards.apply_pvp_rewards(session_state, actions, world_db)
+                                world_db.commit()
+                                battle['rewards_applied'] = True
+                            except Exception as exc:
+                                world_db.rollback()
+                                log.warning('[sixcube] PvP exit rewards error: %s', exc)
                         if actions and actions.pk:
                             ranked_matches.start_metadata(session_state)
                             checkpoint()
@@ -1813,6 +1829,14 @@ def _client_handler(conn: socket.socket, addr) -> None:
                                         session_state['char_id'],2,0))  # EXIT_PLAYER
                         if not solo_pve:
                             reply += b''.join(_frame(m,b) for m,b in ranked_matches.update_packets(session_state))
+                        if len(GATE_TEMPLATES) >= 6:
+                            reply += _template_batch([f for f in GATE_TEMPLATES if struct.unpack_from('<H', f, 2)[0] == 1016], session_state)
+                        wallet = cosmetic_shop.snapshot(world_db)
+                        reply += _frame(1039, struct.pack('<HH6i', 2, 0, *wallet['currency']))
+                        containers = inventory.load(world_db)
+                        reply += _frame(1100, inventory.list_payload(3, containers.get('3', [])))
+                        reply += _frame(85, struct.pack('<BIH', 2, int(session_state.get('level', 1)), 0))
+                        reply += _frame(85, struct.pack('<BIH', 3, int(session_state.get('n_exp', 0)), 0))
                         reply += _frame(1017,b'')  # NotifyBackToMain has no fields.
                         conn.sendall(reply)
                         _dump(addr,'S->C',reply,tag='BATTLE-EXIT')

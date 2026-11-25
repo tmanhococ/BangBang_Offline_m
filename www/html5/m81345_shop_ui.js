@@ -94,8 +94,9 @@ export function openNormalShopRecovery(ui){
 export function renderNormalShopRecovery(ui,parent,{shop=false}={}){
   if(!ui.snapshot?.normalShop?.pending)return;
   const row=element('div',null,'m81345-shop-recovery');
-  row.append(element('span','Giao dịch cửa hàng chưa rõ kết quả.'),ui.button('Kiểm tra kết quả',()=>openNormalShopRecovery(ui),
-    {testId:'shop-reconcile-open',disabled:!canRecover(ui)}));
+  row.append(element('span','Giao dịch cửa hàng chưa rõ kết quả.'),
+    ui.button('Kiểm tra kết quả',()=>openNormalShopRecovery(ui),{testId:'shop-reconcile-open',disabled:!canRecover(ui)}),
+    ui.button('Hủy mã chờ',()=>{ui.client.clearShopPending?.();ui.render();},{testId:'shop-reconcile-clear'}));
   if(shop)at(row,239,571,746,34);parent.append(row);
 }
 export function renderNormalShopGoods(ui,body){
@@ -215,6 +216,12 @@ export function renderNormalShopConfirmation(ui,value){
     body.append(note('Giao dịch đã có mã đối soát. Kiểm tra kết quả để đồng bộ với máy chủ.'));
     if(pending.invalid)body.append(note('Không đọc được bản ghi cục bộ. Giữ nguyên dữ liệu trình duyệt để kiểm tra.','error'));
     primary=button('Kiểm tra kết quả',()=>runDialog(ui,value,'status'),'normal-shop-reconcile',!!pending.invalid||!canRecover(ui));
+    footer.append(button('Hủy giao dịch chờ',()=>{
+      ui.client.clearShopPending?.();
+      value.stage='done';
+      value.notice='Đã hủy mã chờ giao dịch. Bạn có thể tiếp tục thao tác.';
+      ui.render();
+    },'normal-shop-cancel-pending'));
   }else if(value.stage!=='done'&&value.mode!=='recover'){
     const icon=value.mode==='buy'?value.goods.icon:normalShopOffer(ui,value.item.templateId)?.icon,hero=element('div',null,'m81345-shop-hero');
     if(icon){const image=normalShopIcon(icon,'','',82,82);if(image)hero.append(image);}

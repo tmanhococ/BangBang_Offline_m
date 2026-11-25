@@ -439,10 +439,29 @@ class MultiplayerGate:
         self.room_id = self.room_revision = self.selection_room = self.started_room = None
         self.selection_key = None
         self.conn.settimeout(.1)
+        if battle_exit:
+            row = self.db.execute('SELECT state FROM worlds WHERE profile_id=?', (self.profile,)).fetchone()
+            if row and row[0]:
+                try:
+                    fresh = json.loads(row[0])
+                    for key in ('level', 'n_exp', 'rating', 'played', 'wins', 'losses', 'draws'):
+                        if key in fresh:
+                            self.state[key] = fresh[key]
+                except Exception:
+                    pass
         self.checkpoint()
         if battle_exit:
+            import cosmetic_shop
+            import inventory
+            wallet = cosmetic_shop.snapshot(self.db)
+            containers = inventory.load(self.db)
+            wallet_pkt = (1039, struct.pack('<HH6i', 2, 0, *wallet['currency']))
+            container_pkt = (1100, inventory.list_payload(3, containers.get('3', []), notify_type=2))
+            level_pkt = (85, struct.pack('<BIH', 2, int(self.state.get('level', 1)), 0))
+            exp_pkt = (85, struct.pack('<BIH', 3, int(self.state.get('n_exp', 0)), 0))
             self._send([(1707, struct.pack('<IIIII', 0, old_scene, self.profile, 2, 0))]
-                       + ranked_matches.update_packets(self.state) + [(1017, b'')])
+                       + ranked_matches.update_packets(self.state)
+                       + [wallet_pkt, container_pkt, level_pkt, exp_pkt, (1017, b'')])
         else:
             self.conn.sendall(self.wire.make_room_op(20 if reason == 'kicked' else 1,
                                 actor or self.profile, self.profile))
